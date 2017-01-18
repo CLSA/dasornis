@@ -1,0 +1,8 @@
+Database downloaded from:
+http://www.hc-sc.gc.ca/dhp-mps/prodnatur/applications/licen-prod/lnhpd-bdpsnh_data_extract-eng.php
+
+Schema description:
+http://www.hc-sc.gc.ca/dhp-mps/prodnatur/applications/licen-prod/lnhpd-bdpsnh_readme-lisezmoi-eng.php
+
+To load data unzip the database.zip file then run load_data.sql into a database to load all data.
+All tables will be prefixed with "nhp_".
