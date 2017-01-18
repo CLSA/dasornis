@@ -1,0 +1,78 @@
+drug_product
+============
+  use: the main drug table
+  columns of interest: 
+    brand_name: the drug's name
+    descriptor: additional drug information not found in name
+    product_categorization: the type of drug (includes LS or CAT IV)
+    class: Human/Veterinary/Disinfectant/Radiopharmaceutical
+    pediatric_flat: Y/N
+    number_of_ais: the number of active ingredients (not always the same as the count from the active_ingredients table)
+
+active_ingredients
+==================
+  use: lists the active ingredients in a drug (usually the same number as drug_product.number_of_ais)
+  columns of interest:
+    ingredient: the name of the ingredient
+    strength & strenth_unit: dosage size and unit (strength_type is always null)
+
+companies
+=========
+  use: company that makes the drug (1-to-1 relationship to drug_product)
+  columns of interest:
+    company_name: 3029 distinct drug companies
+
+form
+====
+  use: lists the form the drug comes in (drugs may have up to 8+ forms)
+  columns of interest:
+    pharmaceutical_form: the form the drug comes in (oil, wafer, tablet, capsule, etc)
+
+packaging
+=========
+  use: packaging information
+  columns of interest:
+    upc: the upc code, if it has one
+    package_size_unit: caplet, tablet, L, ML, etc
+    package_type: bottle, bister pack, vial, box, etc
+    package_size: a number
+    product_information: additional long-text information
+
+pharmaceutical_std
+==================
+  use: describes the drug's pharmaceutical standard
+  distribution: 1|24220, 2|134, 3|3
+  columns of interest:
+    pharmaceutical_std: one of MFR, USP, BP, PH EUR, CSD, NF, BPC, CF
+
+route
+=====
+  use: defines how the drug is administered
+  distribution: 1|44340, 2|2518, 3|905, 4|267, 5|40
+  columns of interest:
+    route_of_administration: oral, dialysis, dental, rectal, etc
+
+schedule
+========
+  use: lists the drug's schedule
+  distribution: 1|47215, 2|419
+  columns of interest:
+    schedule: OTC, Homeopathic, Prescription, Ethical, Narcotic etc (includes CDSA I, II, III and IV)
+
+status
+======
+  use: changes to the drug's approval status
+  columns of interest: none
+
+therapeutic_class
+=================
+  use: define's the drug's therapeutic class
+  distribution: 1|42741, 2|2005, 3|30
+  columns of interest:
+    tc_atc: fluspirilene, domiphen, hexamidine, calcium carbonate, castor oil, zinc, etc
+    tc_ahfs: anti-inflammatory agents, heparins, caloric agents, oxytocics, etc
+
+veterinary_species
+==================
+  use: defines which animals the drug is used on
+  columns of interest: none

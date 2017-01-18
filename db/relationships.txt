@@ -1,0 +1,59 @@
+id_name_sp
+==========
+  use: the name of the medication
+  values: PMS-PREDNISOLONE, Herbal Medication, Glucosamine with Condroitin, pms-ramipril hctz, estrogen gel, Multigreen, cytozyme-ad, fishoil, ursodiol, B-12 Complex, caltrate D, Rhinocort (5945 distinct values)
+  relationships: drug_product
+
+pres
+====
+  use: whether or not the medication was prescribed
+  values: YES, NO, DK-NA, REFUSED
+  relationships: schedule
+
+dose_nb
+=======
+  use: dose number
+  values: numbers
+  relationships: active_ingredients, packaging
+
+dose_unit
+=========
+  use: dose unit
+  values: mg, tablets-capsules, iu, drops, injection, etc
+  relationships: active_ingredients, packaging
+
+dose_frq
+========
+  use: dose frequency
+  values: daily, twice-a-week, every-other-day, as-needed, etc
+  relationships: none
+
+dose_frq_otsp
+=============
+  use: custom dose frequency (when not value in dose_frq)
+  values: long text that isn't included in dose_frq pre-defined answers
+  relationships: none
+
+dose_cmt
+========
+  use: dose comment
+  values: open text
+  relationships: none
+
+use2
+====
+  use: duration of use
+  values: less-than-6-months, 6-months-to-year, more-than-year, dk-na, refused
+  relationships: none
+
+start_sp
+========
+  use: use start date
+  values: dates
+  relationships: none
+
+reason_sp
+=========
+  use: reason for use
+  values: open text
+  relationships: none
