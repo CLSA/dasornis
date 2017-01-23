@@ -12,9 +12,9 @@ CREATE TABLE nhp_nonmedicinal_ingredient (
   REFERENCES nhp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
-LOAD DATA LOCAL INFILE "NHP_NONMEDICINAL_INGREDIENTS.txt"
-INTO TABLE nhp_nonmedicinal_ingredient
-FIELDS TERMINATED BY "|" ENCLOSED BY '"'
+LOAD DATA LOCAL INFILE "enc_NHP_NONMEDICINAL_INGREDIENTS.txt"
+INTO TABLE nhp_nonmedicinal_ingredient CHARACTER SET UTF8
+FIELDS TERMINATED BY "|"
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4 )
 SET nhp_id = @col_0,

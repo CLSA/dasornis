@@ -19,8 +19,8 @@ CREATE TABLE dp_active_ingredient (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
-LOAD DATA LOCAL INFILE "ingred.txt"
-INTO TABLE dp_active_ingredient
+LOAD DATA LOCAL INFILE "enc_ingred.txt"
+INTO TABLE dp_active_ingredient CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
@@ -35,8 +35,8 @@ SET dp_id = @col_0,
     dosage_unit = NULLIF( @col_9, "" ),
     notes = NULLIF( @col_a, "" );
 
-LOAD DATA LOCAL INFILE "ingred_ap.txt"
-INTO TABLE dp_active_ingredient
+LOAD DATA LOCAL INFILE "enc_ingred_ap.txt"
+INTO TABLE dp_active_ingredient CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
@@ -51,8 +51,8 @@ SET dp_id = @col_0,
     dosage_unit = NULLIF( @col_9, "" ),
     notes = NULLIF( @col_a, "" );
 
-LOAD DATA LOCAL INFILE "ingred_ia.txt"
-INTO TABLE dp_active_ingredient
+LOAD DATA LOCAL INFILE "enc_ingred_ia.txt"
+INTO TABLE dp_active_ingredient CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )

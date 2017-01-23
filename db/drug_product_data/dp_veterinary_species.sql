@@ -9,8 +9,8 @@ CREATE TABLE dp_veterinary_species (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
-LOAD DATA LOCAL INFILE "vet.txt"
-INTO TABLE dp_veterinary_species
+LOAD DATA LOCAL INFILE "enc_vet.txt"
+INTO TABLE dp_veterinary_species CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2 )
@@ -18,8 +18,8 @@ SET dp_id = @col_0,
     species = NULLIF( @col_1, "" ),
     sub_species = NULLIF( @col_2, "" );
 
-LOAD DATA LOCAL INFILE "vet_ap.txt"
-INTO TABLE dp_veterinary_species
+LOAD DATA LOCAL INFILE "enc_vet_ap.txt"
+INTO TABLE dp_veterinary_species CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2 )
@@ -27,8 +27,8 @@ SET dp_id = @col_0,
     species = NULLIF( @col_1, "" ),
     sub_species = NULLIF( @col_2, "" );
 
-LOAD DATA LOCAL INFILE "vet_ia.txt"
-INTO TABLE dp_veterinary_species
+LOAD DATA LOCAL INFILE "enc_vet_ia.txt"
+INTO TABLE dp_veterinary_species CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2 )

@@ -10,8 +10,8 @@ CREATE TABLE dp_form (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
-LOAD DATA LOCAL INFILE "form.txt"
-INTO TABLE dp_form
+LOAD DATA LOCAL INFILE "enc_form.txt"
+INTO TABLE dp_form CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2 )
@@ -19,8 +19,8 @@ SET dp_id = @col_0,
     pharmaceutical_code = NULLIF( @col_1, "" ),
     pharmaceutical_form = NULLIF( @col_2, "" );
 
-LOAD DATA LOCAL INFILE "form_ap.txt"
-INTO TABLE dp_form
+LOAD DATA LOCAL INFILE "enc_form_ap.txt"
+INTO TABLE dp_form CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2 )
@@ -28,8 +28,8 @@ SET dp_id = @col_0,
     pharmaceutical_code = NULLIF( @col_1, "" ),
     pharmaceutical_form = NULLIF( @col_2, "" );
 
-LOAD DATA LOCAL INFILE "form_ia.txt"
-INTO TABLE dp_form
+LOAD DATA LOCAL INFILE "enc_form_ia.txt"
+INTO TABLE dp_form CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2 )

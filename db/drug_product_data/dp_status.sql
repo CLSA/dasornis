@@ -10,8 +10,8 @@ CREATE TABLE dp_status (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
-LOAD DATA LOCAL INFILE "status.txt"
-INTO TABLE dp_status
+LOAD DATA LOCAL INFILE "enc_status.txt"
+INTO TABLE dp_status CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2, @col_3 )
@@ -20,8 +20,8 @@ SET dp_id = @col_0,
     status = NULLIF( @col_2, "" ),
     history_date = str_to_date( @col_3, "%d-%b-%Y" );
 
-LOAD DATA LOCAL INFILE "status_ap.txt"
-INTO TABLE dp_status
+LOAD DATA LOCAL INFILE "enc_status_ap.txt"
+INTO TABLE dp_status CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2, @col_3 )
@@ -30,8 +30,8 @@ SET dp_id = @col_0,
     status = NULLIF( @col_2, "" ),
     history_date = str_to_date( @col_3, "%d-%b-%Y" );
 
-LOAD DATA LOCAL INFILE "status_ia.txt"
-INTO TABLE dp_status
+LOAD DATA LOCAL INFILE "enc_status_ia.txt"
+INTO TABLE dp_status CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2, @col_3 )

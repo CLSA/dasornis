@@ -25,9 +25,9 @@ CREATE TABLE nhp_recommended_dose (
   REFERENCES nhp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
-LOAD DATA LOCAL INFILE "NHP_PROD_RECOMMENDED_DOSE.txt"
-INTO TABLE nhp_recommended_dose
-FIELDS TERMINATED BY "|" ENCLOSED BY '"'
+LOAD DATA LOCAL INFILE "enc_NHP_PROD_RECOMMENDED_DOSE.txt"
+INTO TABLE nhp_recommended_dose CHARACTER SET UTF8
+FIELDS TERMINATED BY "|"
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9,
   @col_a, @col_b, @col_c, @col_d, @col_e, @col_f, @col_g, @col_h )

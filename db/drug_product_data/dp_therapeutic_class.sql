@@ -13,8 +13,8 @@ CREATE TABLE dp_therapeutic_class (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
-LOAD DATA LOCAL INFILE "ther.txt"
-INTO TABLE dp_therapeutic_class
+LOAD DATA LOCAL INFILE "enc_ther.txt"
+INTO TABLE dp_therapeutic_class CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4 )
@@ -24,8 +24,8 @@ SET dp_id = @col_0,
     ahfs_number = NULLIF( @col_3, "" ),
     ahfs = NULLIF( @col_4, "" );
 
-LOAD DATA LOCAL INFILE "ther_ap.txt"
-INTO TABLE dp_therapeutic_class
+LOAD DATA LOCAL INFILE "enc_ther_ap.txt"
+INTO TABLE dp_therapeutic_class CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4 )
@@ -35,8 +35,8 @@ SET dp_id = @col_0,
     ahfs_number = NULLIF( @col_3, "" ),
     ahfs = NULLIF( @col_4, "" );
 
-LOAD DATA LOCAL INFILE "ther_ia.txt"
-INTO TABLE dp_therapeutic_class
+LOAD DATA LOCAL INFILE "enc_ther_ia.txt"
+INTO TABLE dp_therapeutic_class CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4 )

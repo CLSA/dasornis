@@ -9,24 +9,24 @@ CREATE TABLE dp_schedule (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
-LOAD DATA LOCAL INFILE "schedule.txt"
-INTO TABLE dp_schedule
+LOAD DATA LOCAL INFILE "enc_schedule.txt"
+INTO TABLE dp_schedule CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1 )
 SET dp_id = @col_0,
     schedule = NULLIF( @col_1, "" );
 
-LOAD DATA LOCAL INFILE "schedule_ap.txt"
-INTO TABLE dp_schedule
+LOAD DATA LOCAL INFILE "enc_schedule_ap.txt"
+INTO TABLE dp_schedule CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1 )
 SET dp_id = @col_0,
     schedule = NULLIF( @col_1, "" );
 
-LOAD DATA LOCAL INFILE "schedule_ia.txt"
-INTO TABLE dp_schedule
+LOAD DATA LOCAL INFILE "enc_schedule_ia.txt"
+INTO TABLE dp_schedule CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1 )

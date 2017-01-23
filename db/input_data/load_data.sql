@@ -27,7 +27,7 @@ CREATE TABLE data (
   INDEX dk_reason_sp ( reason_sp )
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOAD DATA LOCAL INFILE "data.csv"
+LOAD DATA LOCAL INFILE "enc_data.csv"
 INTO TABLE data
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"

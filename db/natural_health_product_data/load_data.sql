@@ -1,6 +1,10 @@
 -- This file will load all data downloaded form the Health Canada Natural and Non-prescription Health Products Directorate (NNHPD)
 -- @link http://www.hc-sc.gc.ca/dhp-mps/prodnatur/applications/licen-prod/lnhpd-bdpsnh_data_extract-eng.php
 
+
+SET CHARACTER SET 'utf8';
+SET collation_connection = 'utf8_general_ci';
+
 DROP TABLE IF EXISTS nhp_purpose;
 DROP TABLE IF EXISTS nhp_recommended_dose;
 DROP TABLE IF EXISTS nhp_risk;

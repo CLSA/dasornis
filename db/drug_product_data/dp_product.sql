@@ -19,8 +19,8 @@ CREATE TABLE dp_product (
   KEY dk_number_of_ais ( number_of_ais )
 ) ENGINE=InnoDB CHARSET=utf8;
 
-LOAD DATA LOCAL INFILE "drug.txt"
-INTO TABLE dp_product
+LOAD DATA LOCAL INFILE "enc_drug.txt"
+INTO TABLE dp_product CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
@@ -36,8 +36,8 @@ SET id = @col_0,
     last_update_date = str_to_date( @col_9, "%d-%b-%Y" ),
     ai_group_no = NULLIF( REPLACE( @col_a, '"', '' ), "" );
 
-LOAD DATA LOCAL INFILE "drug_ap.txt"
-INTO TABLE dp_product
+LOAD DATA LOCAL INFILE "enc_drug_ap.txt"
+INTO TABLE dp_product CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
@@ -53,8 +53,8 @@ SET id = @col_0,
     last_update_date = str_to_date( @col_9, "%d-%b-%Y" ),
     ai_group_no = NULLIF( REPLACE( @col_a, '"', '' ), "" );
 
-LOAD DATA LOCAL INFILE "drug_ia.txt"
-INTO TABLE dp_product
+LOAD DATA LOCAL INFILE "enc_drug_ia.txt"
+INTO TABLE dp_product CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )

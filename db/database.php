@@ -19,7 +19,8 @@ class db {
   function query( $sql ) {
     $result = $this->mysql->query( $sql );
     if( false === $result ) {
-      printf( "mysql > %s [%s]\n", $this->mysql->error, $this->mysql->errno );
+      printf( "mysql > %s [%s] for query:\n%s\n", $this->mysql->error, $this->mysql->errno, $sql );
+
       die();
     }
     return $result;
