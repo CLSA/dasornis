@@ -11,7 +11,7 @@ $db->query(
   'CREATE TABLE data_has_dp_product ( '.
     'uid char(7) NOT NULL, '.
     'dp_id int(11) NOT NULL, '.
-    'type ENUM( "direct", "code", "simple", "no_vowel", "soundex" ), '.
+    'type ENUM( "direct", "code", "word", "simple", "no_vowel", "soundex" ), '.
     'PRIMARY KEY (uid, dp_id), '.
     'INDEX fk_uid (uid), '.
     'INDEX fk_dp_id (dp_id), '.
@@ -35,7 +35,7 @@ $db->query(
   'CREATE TABLE data_has_nhp_product ( '.
     'uid char(7) NOT NULL, '.
     'nhp_id int(11) NOT NULL, '.
-    'type ENUM( "direct", "code", "simple", "no_vowel", "soundex" ), '.
+    'type ENUM( "direct", "code", "word", "simple", "no_vowel", "soundex" ), '.
     'PRIMARY KEY (uid, nhp_id), '.
     'INDEX fk_uid (uid), '.
     'INDEX fk_nhp_id (nhp_id), '.
@@ -219,6 +219,7 @@ $db->query(
   'ADD COLUMN id_name_sp_simple VARCHAR(127) DEFAULT NULL, '.
   'ADD COLUMN id_name_sp_no_vowel VARCHAR(127) DEFAULT NULL, '.
   'ADD COLUMN id_name_sp_soundex VARCHAR(127) DEFAULT NULL, '.
+  'ADD COLUMN multiple TINYINT(1) DEFAULT NULL, '.
   'ADD INDEX dk_id_name_sp_code ( id_name_sp_code ), '.
   'ADD INDEX dk_id_name_sp_simple ( id_name_sp_simple ), '.
   'ADD INDEX dk_id_name_sp_no_vowel ( id_name_sp_no_vowel ), '.
