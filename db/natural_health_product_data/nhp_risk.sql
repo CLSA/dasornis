@@ -17,7 +17,7 @@ CREATE TABLE nhp_risk (
 LOAD DATA LOCAL INFILE "enc_NHP_PRODUCTS_RISK.txt"
 INTO TABLE nhp_risk CHARACTER SET UTF8
 FIELDS TERMINATED BY "|"
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6 )
 SET nhp_id = @col_0,
     risk_type_desc = NULLIF( @col_1, "" ),

@@ -22,7 +22,7 @@ CREATE TABLE dp_product (
 LOAD DATA LOCAL INFILE "enc_drug.txt"
 INTO TABLE dp_product CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
 SET id = @col_0,
     categorization = NULLIF( @col_1, "" ),
@@ -39,7 +39,7 @@ SET id = @col_0,
 LOAD DATA LOCAL INFILE "enc_drug_ap.txt"
 INTO TABLE dp_product CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
 SET id = @col_0,
     categorization = NULLIF( @col_1, "" ),
@@ -56,7 +56,7 @@ SET id = @col_0,
 LOAD DATA LOCAL INFILE "enc_drug_ia.txt"
 INTO TABLE dp_product CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
 SET id = @col_0,
     categorization = NULLIF( @col_1, "" ),

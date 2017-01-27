@@ -30,7 +30,7 @@ CREATE TABLE data (
 LOAD DATA LOCAL INFILE "enc_data.csv"
 INTO TABLE data
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 IGNORE 1 LINES
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9,
   @col_10, @col_11, @col_12, @col_13, @col_14, @col_15, @col_16, @col_17 )

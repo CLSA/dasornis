@@ -26,7 +26,7 @@ CREATE TABLE dp_company (
 LOAD DATA LOCAL INFILE "enc_comp.txt"
 INTO TABLE dp_company CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a, @col_b, @col_c, @col_d, @col_e, @col_f )
 SET dp_id = @col_0,
     mfr_code = NULLIF( @col_1, "" ),
@@ -48,7 +48,7 @@ SET dp_id = @col_0,
 LOAD DATA LOCAL INFILE "enc_comp_ap.txt"
 INTO TABLE dp_company CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a, @col_b, @col_c, @col_d, @col_e, @col_f )
 SET dp_id = @col_0,
     mfr_code = NULLIF( @col_1, "" ),
@@ -70,7 +70,7 @@ SET dp_id = @col_0,
 LOAD DATA LOCAL INFILE "enc_comp_ia.txt"
 INTO TABLE dp_company CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a, @col_b, @col_c, @col_d, @col_e, @col_f )
 SET dp_id = @col_0,
     mfr_code = NULLIF( @col_1, "" ),

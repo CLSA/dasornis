@@ -12,7 +12,7 @@ CREATE TABLE dp_pharmaceutical_standard (
 LOAD DATA LOCAL INFILE "enc_pharm.txt"
 INTO TABLE dp_pharmaceutical_standard CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1 )
 SET dp_id = @col_0,
     standard = NULLIF( @col_1, "" );
@@ -20,7 +20,7 @@ SET dp_id = @col_0,
 LOAD DATA LOCAL INFILE "enc_pharm_ap.txt"
 INTO TABLE dp_pharmaceutical_standard CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1 )
 SET dp_id = @col_0,
     standard = NULLIF( @col_1, "" );
@@ -28,7 +28,7 @@ SET dp_id = @col_0,
 LOAD DATA LOCAL INFILE "enc_pharm_ia.txt"
 INTO TABLE dp_pharmaceutical_standard CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1 )
 SET dp_id = @col_0,
     standard = NULLIF( @col_1, "" );

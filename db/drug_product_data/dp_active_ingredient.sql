@@ -22,7 +22,7 @@ CREATE TABLE dp_active_ingredient (
 LOAD DATA LOCAL INFILE "enc_ingred.txt"
 INTO TABLE dp_active_ingredient CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
 SET dp_id = @col_0,
     code = NULLIF( @col_1, "" ),
@@ -38,7 +38,7 @@ SET dp_id = @col_0,
 LOAD DATA LOCAL INFILE "enc_ingred_ap.txt"
 INTO TABLE dp_active_ingredient CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
 SET dp_id = @col_0,
     code = NULLIF( @col_1, "" ),
@@ -54,7 +54,7 @@ SET dp_id = @col_0,
 LOAD DATA LOCAL INFILE "enc_ingred_ia.txt"
 INTO TABLE dp_active_ingredient CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
 SET dp_id = @col_0,
     code = NULLIF( @col_1, "" ),

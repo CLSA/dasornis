@@ -13,7 +13,7 @@ CREATE TABLE nhp_route (
 LOAD DATA LOCAL INFILE "enc_NHP_ROUTE.txt"
 INTO TABLE nhp_route CHARACTER SET UTF8
 FIELDS TERMINATED BY "|"
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2 )
 SET nhp_id = @col_0,
     route_type_desc = NULLIF( @col_1, "" ),

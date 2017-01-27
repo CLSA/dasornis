@@ -16,7 +16,7 @@ CREATE TABLE dp_therapeutic_class (
 LOAD DATA LOCAL INFILE "enc_ther.txt"
 INTO TABLE dp_therapeutic_class CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4 )
 SET dp_id = @col_0,
     anumber = NULLIF( @col_1, "" ),
@@ -27,7 +27,7 @@ SET dp_id = @col_0,
 LOAD DATA LOCAL INFILE "enc_ther_ap.txt"
 INTO TABLE dp_therapeutic_class CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4 )
 SET dp_id = @col_0,
     anumber = NULLIF( @col_1, "" ),
@@ -38,7 +38,7 @@ SET dp_id = @col_0,
 LOAD DATA LOCAL INFILE "enc_ther_ia.txt"
 INTO TABLE dp_therapeutic_class CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4 )
 SET dp_id = @col_0,
     anumber = NULLIF( @col_1, "" ),

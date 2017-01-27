@@ -13,7 +13,7 @@ CREATE TABLE nhp_name (
 LOAD DATA LOCAL INFILE "enc_NHP_PRODUCT_NAMES.txt"
 INTO TABLE nhp_name CHARACTER SET UTF8
 FIELDS TERMINATED BY "|"
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2 )
 SET nhp_id = @col_0,
     name = NULLIF( @col_1, "" ),

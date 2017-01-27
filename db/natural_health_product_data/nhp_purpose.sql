@@ -13,7 +13,7 @@ CREATE TABLE nhp_purpose (
 LOAD DATA LOCAL INFILE "enc_NHP_PRODUCTS_PURPOSE.txt"
 INTO TABLE nhp_purpose CHARACTER SET UTF8
 FIELDS TERMINATED BY "|"
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2 )
 SET nhp_id = @col_0,
     purpose_e = NULLIF( @col_1, "" ),

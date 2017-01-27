@@ -17,7 +17,7 @@ CREATE TABLE nhp_product (
 LOAD DATA LOCAL INFILE "enc_NHP_PRODUCTS.txt"
 INTO TABLE nhp_product CHARACTER SET UTF8
 FIELDS TERMINATED BY '|' ENCLOSED BY '' ESCAPED BY ''
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7 )
 SET id = @col_0,
     npn = NULLIF( @col_1, "" ),

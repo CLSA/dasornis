@@ -1,4 +1,6 @@
 #!/bin/bash
 
 echo "Converting data..."
-iconv -f iso-8859-1 -t UTF-8 data.csv -o enc_data.csv
+LC_ALL=C sed 's/ *[\x00-\x19\x7B\x7D-\xBF]\+ */ /g' data.csv |
+  sed 's/ *" */"/g' |
+  iconv -f iso-8859-1 -t UTF-8 > enc_data.csv

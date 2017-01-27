@@ -13,7 +13,7 @@ CREATE TABLE dp_status (
 LOAD DATA LOCAL INFILE "enc_status.txt"
 INTO TABLE dp_status CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3 )
 SET dp_id = @col_0,
     current_status_flag = IF( ""=@col_1, NULL, IF( "Y"=@col_1, 1, 0 ) ),
@@ -23,7 +23,7 @@ SET dp_id = @col_0,
 LOAD DATA LOCAL INFILE "enc_status_ap.txt"
 INTO TABLE dp_status CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3 )
 SET dp_id = @col_0,
     current_status_flag = IF( ""=@col_1, NULL, IF( "Y"=@col_1, 1, 0 ) ),
@@ -33,7 +33,7 @@ SET dp_id = @col_0,
 LOAD DATA LOCAL INFILE "enc_status_ia.txt"
 INTO TABLE dp_status CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\r\n"
+LINES TERMINATED BY "\n"
 ( @col_0, @col_1, @col_2, @col_3 )
 SET dp_id = @col_0,
     current_status_flag = IF( ""=@col_1, NULL, IF( "Y"=@col_1, 1, 0 ) ),
