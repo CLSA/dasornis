@@ -1,6 +1,9 @@
 -- This file will load all data downloaded form the Health Canada Drug Product Database (DPD)
 -- @link http://www.hc-sc.gc.ca/dhp-mps/prodpharma/databasdon/dp_bdpp_data_extract-eng.php
 
+SET CHARACTER SET 'utf8';
+SET collation_connection = 'utf8_general_ci';
+
 DROP TABLE IF EXISTS dp_active_ingredient;
 DROP TABLE IF EXISTS dp_company;
 DROP TABLE IF EXISTS dp_form;

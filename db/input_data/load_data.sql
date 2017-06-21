@@ -1,3 +1,8 @@
+-- This file will load all medication data stored in Opal
+
+SET CHARACTER SET 'utf8';
+SET collation_connection = 'utf8_general_ci';
+
 SELECT "Creating data table" AS "";
 
 DROP TABLE IF EXISTS data;
@@ -28,7 +33,7 @@ CREATE TABLE data (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOAD DATA LOCAL INFILE "enc_data.csv"
-INTO TABLE data
+INTO TABLE data CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES
