@@ -214,12 +214,25 @@ unlink( 'temp_natural_name.csv' );
 // mark which drugs match a natural product's name
 $db->query(
   'UPDATE drug_name '.
-  'JOIN natural_name USING( name ) '
+  'JOIN natural_name USING( name ) '.
   'SET drug_name.also_natural_name = 1'
 );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 print "Adding helper columns to data table\n";
+
+$result = $db->query(
+  'SELECT column_name '.
+  'FROM information_schema.columns '.
+  'WHERE table_schema = DATABASE() '.
+  'AND table_name = "data" '.
+  'AND column_name IN ( "id_name_sp_code", "id_name_sp_simple", "multiple" )'
+);
+
+while( $row = $result->fetch_row() ) {
+  if( 'multiple' != $row[0] ) $db->query( sprintf( 'ALTER TABLE data DROP INDEX dk_%s', $row[0] ) );
+  $db->query( sprintf( 'ALTER TABLE data DROP COLUMN %s', $row[0] ) );
+}
 
 $db->query(
   'ALTER TABLE data '.
