@@ -1,0 +1,51 @@
+Drug and Natural Product Matching Algorithm
+===========================================
+
+Overview
+--------
+The algorithm will attempt to match the medication as entered during a participant’s interview, hereafter known as an input, to one or more product(s) in the drug product database, hereafter known as a drug, or one or more product(s) in the natural health product database, hereafter known as a natural.
+
+The algorithm uses multiple distinct strategies, known hereafter as a test, for matching inputs to drugs or naturals.  All tests are ordered sequentially such that once an input is matched it is no longer considered in the remaining tests.
+
+Every test first attempts to match an input to one or more drug(s).  Then, if no match was found the same test is used to try and match the input to one or more natural(s).  Some tests will only ever match an input to a single drug or natural, while other tests may find multiple matches.
+
+Tests
+-----
+Listed here are all tests used by the algorithm in the order that they are processed:
+
+  1. Direct Test
+    The input is compared to the drug or natural’s name.  A match is found when the input is identical to the drug’s or natrual’s name (including all special characters, spaces, etc).  There can only ever be one match.
+    Examples:
+      the input “TYLENOL ALLERGY” matches the drug name “TYLENOL ALLERGY”
+      the input “TYLENOL ALLERGY 100MG” does not match the drug name “TYLENOL ALLERGY”
+
+  2. Code Test
+    The input is compared to the drug identification number (DIN) or natural product number (NPN).  A match is found when the input is identical to the drug’s DIN or the natural’s NPN.  There can only ever be one match.
+    Examples:
+      the input “02275619” matches the drug DIN “02275619”
+      the input “0227-5619” does not matches the drug DIN “02275619”
+
+  3. Word Test
+    The input is compared to the drug or natural’s name.  A match is found when the drug’s or natural’s name is found as a as a sub-string within the input.  Spaces are considered such that only whole words can be matched.  There may be multiple matches.
+    Examples:
+      the input “LARGE TYLENOL SUPER RELIEF 100MG” matches the drug name “TYLENOL SUPER”
+      the input “LARGE TYLENOL SUPERIOR RELIEF 100MG” does not match the drug name “TYLENOL SUPER”
+
+  4. Simple Test
+    The input with all non alpha-numeric characters removed is compared to the drug or natural’s name with all non alpha-numeric characters removed.  A match is found when the two altered names are equal.  There may be multiple matches.
+    Examples:
+      the input “TYLENOL-ALLERGY (50-MG)” (transformed into “TYLENOLALLERGY50MG”) matches the drug name “TYLENOL ALLERGY 50MG” (transformed into “TYLENOLALLERGY50MG”)
+      the input “TYLENOL-ALLERGY (50-MG)” (transformed into “ TYLENOLALLERGY50MG”) does not match the drug name “TYLENOL ALLERGY” (transformed into “TYLENOLALLERGY”)
+
+Unused Tests
+------------
+Listed here are other tests which are not in use:
+
+  * Reverse-Word Test
+    This test is identical to the regular “Word Test” but the input is searched as a sub-strings within the drug or natural instead.
+
+  * No-Vowel Test
+    This test is identical to the “Simple Test” but the transformation applied to the input and drug/natural names removes all vowels as well as non alpha-numeric characters.
+
+  * Soundex Test
+    The input transformed into a code using a phonetic algorithm (Soundex) is compared to the drug or natural’s name also transformed by the Soundex algorithm.  A match is found when the two codes are equal (ie: when the sound similar).  There may be multiple matches.
