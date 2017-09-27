@@ -68,14 +68,8 @@ $db->query(
   'ALTER TABLE drug_name '.
   'ADD COLUMN also_natural_name TINYINT(1) NOT NULL DEFAULT 0, '.
   'ADD COLUMN name_simple VARCHAR(200) NULL DEFAULT NULL, '.
-//  'ADD COLUMN name_no_vowel VARCHAR(200) NULL DEFAULT NULL, '.
-//  'ADD COLUMN name_soundex VARCHAR(200) NULL DEFAULT NULL, '.
   'ADD INDEX dk_name_simple ( name_simple )'
-//  'ADD INDEX dk_name_no_vowel ( name_no_vowel ), '.
-//  'ADD INDEX dk_name_soundex ( name_soundex )'
 );
-
-// $db->query( 'UPDATE drug_name SET name_soundex = SOUNDEX( name )' );
 
 $data = '';
 $result = $db->query( 'SELECT name FROM drug_name' );
@@ -94,10 +88,8 @@ $db->query(
   'CREATE TEMPORARY TABLE temp_drug_name ( '.
     'name CHAR(200) NOT NULL, '.
     'name_simple VARCHAR(127), '.
-//    'name_no_vowel VARCHAR(127), '.
     'PRIMARY KEY (name), '.
     'INDEX dk_name_simple ( name_simple ) '.
-//    'INDEX dk_name_no_vowel ( name_no_vowel ) '.
   ') ENGINE=InnoDB DEFAULT CHARSET=utf8'
 );
 $db->query(
@@ -110,7 +102,6 @@ $result = $db->query(
   'UPDATE drug_name '.
   'JOIN temp_drug_name USING( name ) '.
   'SET drug_name.name_simple = temp_drug_name.name_simple'
-//      'drug_name.name_no_vowel = temp_drug_name.name_no_vowel'
 );
 
 unlink( 'temp_drug_name.csv' );
@@ -164,14 +155,8 @@ $db->query( 'DROP TABLE natural_other_name' );
 $db->query(
   'ALTER TABLE natural_name '.
   'ADD COLUMN name_simple VARCHAR(200) NULL DEFAULT NULL, '.
-//  'ADD COLUMN name_no_vowel VARCHAR(200) NULL DEFAULT NULL, '.
-//  'ADD COLUMN name_soundex VARCHAR(200) NULL DEFAULT NULL, '.
   'ADD INDEX dk_name_simple ( name_simple )'
-//  'ADD INDEX dk_name_no_vowel ( name_no_vowel ), '.
-//  'ADD INDEX dk_name_soundex ( name_soundex )'
 );
-
-// $db->query( 'UPDATE natural_name SET name_soundex = SOUNDEX( name )' );
 
 $data = '';
 $result = $db->query( 'SELECT name FROM natural_name' );
@@ -190,10 +175,8 @@ $db->query(
   'CREATE TEMPORARY TABLE temp_natural_name ( '.
     'name CHAR(200) NOT NULL, '.
     'name_simple VARCHAR(127), '.
-//    'name_no_vowel VARCHAR(127), '.
     'PRIMARY KEY (name), '.
     'INDEX dk_name_simple ( name_simple ) '.
-//    'INDEX dk_name_no_vowel ( name_no_vowel ) '.
   ') ENGINE=InnoDB DEFAULT CHARSET=utf8'
 );
 $db->query(
@@ -206,7 +189,6 @@ $result = $db->query(
   'UPDATE natural_name '.
   'JOIN temp_natural_name USING( name ) '.
   'SET natural_name.name_simple = temp_natural_name.name_simple'
-//      'natural_name.name_no_vowel = temp_natural_name.name_no_vowel'
 );
 
 unlink( 'temp_natural_name.csv' );
@@ -238,16 +220,10 @@ $db->query(
   'ALTER TABLE data '.
   'ADD COLUMN id_name_sp_code VARCHAR(10) DEFAULT NULL, '.
   'ADD COLUMN id_name_sp_simple VARCHAR(127) DEFAULT NULL, '.
-//  'ADD COLUMN id_name_sp_no_vowel VARCHAR(127) DEFAULT NULL, '.
-//  'ADD COLUMN id_name_sp_soundex VARCHAR(127) DEFAULT NULL, '.
   'ADD COLUMN multiple TINYINT(1) DEFAULT NULL, '.
   'ADD INDEX dk_id_name_sp_code ( id_name_sp_code ), '.
   'ADD INDEX dk_id_name_sp_simple ( id_name_sp_simple )'
-//  'ADD INDEX dk_id_name_sp_no_vowel ( id_name_sp_no_vowel ), '.
-//  'ADD INDEX dk_id_name_sp_soundex ( id_name_sp_soundex )'
 );
-
-// $db->query( 'UPDATE data SET id_name_sp_soundex = SOUNDEX( id_name_sp )' );
 
 $data = '';
 $result = $db->query( 'SELECT uid, id_name_sp FROM data WHERE id_name_sp IS NOT NULL' );
@@ -270,11 +246,9 @@ $db->query(
     'uid CHAR(7) NOT NULL, '.
     'id_name_sp_code VARCHAR(10), '.
     'id_name_sp_simple VARCHAR(127), '.
-//    'id_name_sp_no_vowel VARCHAR(127), '.
     'PRIMARY KEY (uid), '.
     'INDEX dk_id_name_sp_code ( id_name_sp_code ), '.
     'INDEX dk_id_name_sp_simple ( id_name_sp_simple ) '.
-//    'INDEX dk_id_name_sp_no_vowel ( id_name_sp_no_vowel ) '.
   ') ENGINE=InnoDB DEFAULT CHARSET=utf8'
 );
 $db->query(
@@ -288,7 +262,6 @@ $result = $db->query(
   'JOIN temp_data USING( uid ) '.
   'SET data.id_name_sp_code = temp_data.id_name_sp_code, '.
       'data.id_name_sp_simple = temp_data.id_name_sp_simple'
-//      'data.id_name_sp_no_vowel = temp_data.id_name_sp_no_vowel'
 );
 
 unlink( 'temp_data.csv' );
