@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS single_matches;
+CREATE TEMPORARY TABLE single_matches
 SELECT data.id_name_sp AS input,
        IFNULL( dp_product.brand_name, nhp_product.product_name ) AS `match`,
        IFNULL( dp_product.din, nhp_product.npn ) AS `din/npn`,
@@ -12,6 +14,7 @@ SELECT data.id_name_sp AS input,
          ""
        ) AS `ahfs`,
        IF( dp_id IS NOT NULL, "drug", "natural" ) AS `database`,
+       IFNULL( pres, "" ) pres,
        IFNULL( data_has_dp_product.type, data_has_nhp_product.type ) AS type,
        COUNT(*) AS matches,
        IF( also_natural_name IS NOT NULL, IF( also_natural_name, "yes", "no" ), "" ) AS `both`
@@ -25,6 +28,10 @@ LEFT JOIN nhp_product ON data_has_nhp_product.nhp_id = nhp_product.id
 WHERE id_din_sp IS NULL
   AND id_name_sp IS NOT NULL
   AND ( dp_id IS NOT NULL OR nhp_id IS NOT NULL )
-GROUP BY uid
-ORDER BY data.id_name_sp,
-         IFNULL( dp_product.brand_name, nhp_product.product_name );
+GROUP BY uid 
+ORDER BY data.id_name_sp, IFNULL( dp_product.brand_name, nhp_product.product_name );
+
+-- now get the list made above without repeating any rows
+SELECT DISTINCT `input`,`match`,`din/npn`,`dtc`,`ahfs`,`database`,`pres`,`type`,`both`
+FROM single_matches
+WHERE matches = 1;
