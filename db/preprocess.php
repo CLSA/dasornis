@@ -83,33 +83,34 @@ while( $row = $result->fetch_row() ) if( $row[0] ) {
     $row[0],
     preg_replace( '/[^a-z0-9]/', '', strtolower( $row[0] ) ),
     preg_replace( '/ *\([^)]+\)/', '', strtolower( $row[0] ) ),
-    preg_replace(
+    trim( preg_replace(
       array_reverse( array(
-        '/ *\(?[0-9.]+ ?mm\)?/',
-        '/ *\(?[0-9.]+ ?mg\)?/',
-        '/ *\(?[0-9.]+ ?mg\/g\)?/',
-        '/ *\(?[0-9.]+ ?mg\/ml\)?/',
-        '/ *\(?[0-9.]+ ?mg\/[0-9.]+ ?ml\)?/',
-        '/ *\(?[0-9.]+ ?mcg\)?/',
-        '/ *\(?[0-9.]+ ?mcg\/ml\)?/',
-        '/ *\(?[0-9.]+ ?ml\)?/',
-        '/ *\(?[0-9.]+ ?u\/ml\)?/',
-        '/ *\(?[0-9.]+ ?bau\/ml\)?/',
-        '/ *\(?[0-9.]+ ?au\/ml\)?/',
-        '/ *\(?[0-9.]+ ?i\.?u\.?\)?/',
-        '/ *\(?[0-9.]+ ?u\.?i\.?\)?/',
-        '/ *\(?[0-9.]+ ?unit\)?/',
-        '/ *\(?[0-9.]+ ?unit\/ml\)?/',
-        '/ *\(?[0-9.]+ ?unit\/vial\)?/',
-        '/ *\(?[0-9.]+ ?g\/vial\)?/',
-        '/ *\(?[0-9.]+ ?usp\)?/',
-        '/ *\(?[0-9.]+ ?spf\)?/',
-        '/ *\(?[0-9.]+ ?gm\)?/',
-        '/ *\(?[0-9.]+ ?gr\)?/',
-        '/ *\(?[0-9.]+ ?[cd]h ?- ?[0-9.]+ ?[cd]h\)?/',
-        '/ *\(?[0-9.]+ ?x ?- ?c[0-9.]+ ?\)?/'
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mm\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mg\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mg\/g\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mg\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mg\/[0-9.,:;\-\/ ]+ ?ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mcg\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mcg\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?u\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?bau\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?au\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?i\.?u\.?\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?u\.?i\.?\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?unit\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?unit\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?unit\/vial\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?g\/vial\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?diskus\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?usp\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?spf\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?gm\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?gr\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?[cd]h ?- ?[0-9.,:;\-\/ ]+ ?[cd]h\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?x ?- ?c[0-9.,:;\-\/ ]+ ?\)?/'
       ) ), '', strtolower( $row[0] )
-    )
+    ) )
   );
 }
 $result->free();
@@ -207,33 +208,34 @@ while( $row = $result->fetch_row() ) if( $row[0] ) {
     $row[0],
     preg_replace( '/[^a-z0-9]/', '', strtolower( $row[0] ) ),
     preg_replace( '/ *\([^)]+\)/', '', strtolower( $row[0] ) ),
-    preg_replace(
+    trim( preg_replace(
       array_reverse( array(
-        '/ *\(?[0-9.]+ ?mm\)?/',
-        '/ *\(?[0-9.]+ ?mg\)?/',
-        '/ *\(?[0-9.]+ ?mg\/g\)?/',
-        '/ *\(?[0-9.]+ ?mg\/ml\)?/',
-        '/ *\(?[0-9.]+ ?mg\/[0-9.]+ ?ml\)?/',
-        '/ *\(?[0-9.]+ ?mcg\)?/',
-        '/ *\(?[0-9.]+ ?mcg\/ml\)?/',
-        '/ *\(?[0-9.]+ ?ml\)?/',
-        '/ *\(?[0-9.]+ ?u\/ml\)?/',
-        '/ *\(?[0-9.]+ ?bau\/ml\)?/',
-        '/ *\(?[0-9.]+ ?au\/ml\)?/',
-        '/ *\(?[0-9.]+ ?i\.?u\.?\)?/',
-        '/ *\(?[0-9.]+ ?u\.?i\.?\)?/',
-        '/ *\(?[0-9.]+ ?unit\)?/',
-        '/ *\(?[0-9.]+ ?unit\/ml\)?/',
-        '/ *\(?[0-9.]+ ?unit\/vial\)?/',
-        '/ *\(?[0-9.]+ ?g\/vial\)?/',
-        '/ *\(?[0-9.]+ ?usp\)?/',
-        '/ *\(?[0-9.]+ ?spf\)?/',
-        '/ *\(?[0-9.]+ ?gm\)?/',
-        '/ *\(?[0-9.]+ ?gr\)?/',
-        '/ *\(?[0-9.]+ ?[cd]h ?- ?[0-9.]+ ?[cd]h\)?/',
-        '/ *\(?[0-9.]+ ?x ?- ?c[0-9.]+ ?\)?/'
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mm\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mg\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mg\/g\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mg\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mg\/[0-9.,:;\-\/ ]+ ?ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mcg\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mcg\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?u\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?bau\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?au\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?i\.?u\.?\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?u\.?i\.?\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?unit\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?unit\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?unit\/vial\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?g\/vial\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?diskus\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?usp\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?spf\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?gm\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?gr\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?[cd]h ?- ?[0-9.,:;\-\/ ]+ ?[cd]h\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?x ?- ?c[0-9.,:;\-\/ ]+ ?\)?/'
       ) ), '', strtolower( $row[0] )
-    )
+    ) )
   );
 }
 $result->free();
@@ -282,7 +284,7 @@ $result = $db->query(
   'FROM information_schema.columns '.
   'WHERE table_schema = DATABASE() '.
   'AND table_name = "data" '.
-  'AND column_name IN ( "id_name_sp_code", "id_name_sp_simple", "id_name_sp_no_parens", "id_name_sp_no_units", "multiple" )'
+  'AND column_name IN ( "id_name_sp_code", "id_name_sp_corrected", "id_name_sp_simple", "id_name_sp_no_parens", "id_name_sp_no_units", "multiple" )'
 );
 
 while( $row = $result->fetch_row() ) {
@@ -293,54 +295,63 @@ while( $row = $result->fetch_row() ) {
 $db->query(
   'ALTER TABLE data '.
   'ADD COLUMN id_name_sp_code VARCHAR(10) DEFAULT NULL, '.
+  'ADD COLUMN id_name_sp_corrected VARCHAR(127) DEFAULT NULL, '.
   'ADD COLUMN id_name_sp_simple VARCHAR(127) DEFAULT NULL, '.
   'ADD COLUMN id_name_sp_no_parens VARCHAR(127) DEFAULT NULL, '.
   'ADD COLUMN id_name_sp_no_units VARCHAR(127) DEFAULT NULL, '.
   'ADD COLUMN multiple TINYINT(1) DEFAULT NULL, '.
   'ADD INDEX dk_id_name_sp_code ( id_name_sp_code ), '.
+  'ADD INDEX dk_id_name_sp_corrected ( id_name_sp_corrected ), '.
   'ADD INDEX dk_id_name_sp_simple ( id_name_sp_simple ), '.
   'ADD INDEX dk_id_name_sp_no_parens ( id_name_sp_no_parens ), '.
   'ADD INDEX dk_id_name_sp_no_units ( id_name_sp_no_units )'
 );
 
 $data = '';
-$result = $db->query( 'SELECT uid, id_name_sp FROM data WHERE id_name_sp IS NOT NULL' );
+$result = $db->query(
+  'SELECT uid, LOWER( IFNULL( lookup.output, id_name_sp ) ) '.
+  'FROM data '.
+  'LEFT JOIN lookup ON id_name_sp LIKE CONCAT( "%", input, "%" ) '.
+  'WHERE id_name_sp IS NOT NULL'
+);
 while( $row = $result->fetch_row() ) if( $row[0] && $row[1] ) {
   $matches = array();
   preg_match( "/[0-9]{6,}/", $row[1], $matches );
   $data .= sprintf(
-    '"%s",%s,"%s","%s","%s"'."\n",
+    '"%s",%s,"%s","%s","%s","%s"'."\n",
     $row[0],
     0 < count( $matches ) ? '"'.str_pad( $matches[0], 8, "0", STR_PAD_LEFT ).'"' : 'NULL',
-    preg_replace( '/[^a-z0-9]/', '', strtolower( $row[1] ) ),
-    preg_replace( '/ *\([^)]+\)/', '', strtolower( $row[1] ) ),
-    preg_replace(
+    $row[1],
+    preg_replace( '/[^a-z0-9]/', '', $row[1] ),
+    preg_replace( '/ *\([^)]+\)/', '', $row[1] ),
+    trim( preg_replace(
       array_reverse( array(
-        '/ *\(?[0-9.]+ ?mm\)?/',
-        '/ *\(?[0-9.]+ ?mg\)?/',
-        '/ *\(?[0-9.]+ ?mg\/g\)?/',
-        '/ *\(?[0-9.]+ ?mg\/ml\)?/',
-        '/ *\(?[0-9.]+ ?mg\/[0-9.]+ ?ml\)?/',
-        '/ *\(?[0-9.]+ ?mcg\)?/',
-        '/ *\(?[0-9.]+ ?mcg\/ml\)?/',
-        '/ *\(?[0-9.]+ ?ml\)?/',
-        '/ *\(?[0-9.]+ ?u\/ml\)?/',
-        '/ *\(?[0-9.]+ ?bau\/ml\)?/',
-        '/ *\(?[0-9.]+ ?au\/ml\)?/',
-        '/ *\(?[0-9.]+ ?i\.?u\.?\)?/',
-        '/ *\(?[0-9.]+ ?u\.?i\.?\)?/',
-        '/ *\(?[0-9.]+ ?unit\)?/',
-        '/ *\(?[0-9.]+ ?unit\/ml\)?/',
-        '/ *\(?[0-9.]+ ?unit\/vial\)?/',
-        '/ *\(?[0-9.]+ ?g\/vial\)?/',
-        '/ *\(?[0-9.]+ ?usp\)?/',
-        '/ *\(?[0-9.]+ ?spf\)?/',
-        '/ *\(?[0-9.]+ ?gm\)?/',
-        '/ *\(?[0-9.]+ ?gr\)?/',
-        '/ *\(?[0-9.]+ ?[cd]h ?- ?[0-9.]+ ?[cd]h\)?/',
-        '/ *\(?[0-9.]+ ?x ?- ?c[0-9.]+ ?\)?/'
-      ) ), '', strtolower( $row[1] )
-    )
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mm\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mg\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mg\/g\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mg\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mg\/[0-9.,:;\-\/ ]+ ?ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mcg\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?mcg\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?u\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?bau\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?au\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?i\.?u\.?\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?u\.?i\.?\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?unit\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?unit\/ml\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?unit\/vial\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?g\/vial\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?diskus\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?usp\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?spf\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?gm\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?gr\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?[cd]h ?- ?[0-9.,:;\-\/ ]+ ?[cd]h\)?/',
+        '/ *\(?[0-9.,:;\-\/ ]+ ?x ?- ?c[0-9.,:;\-\/ ]+ ?\)?/'
+      ) ), '', $row[1]
+    ) )
   );
 }
 $result->free();
@@ -350,11 +361,13 @@ $db->query(
   'CREATE TEMPORARY TABLE temp_data ( '.
     'uid CHAR(7) NOT NULL, '.
     'id_name_sp_code VARCHAR(10), '.
+    'id_name_sp_corrected VARCHAR(127), '.
     'id_name_sp_simple VARCHAR(127), '.
     'id_name_sp_no_parens VARCHAR(127), '.
     'id_name_sp_no_units VARCHAR(127), '.
     'PRIMARY KEY (uid), '.
     'INDEX dk_id_name_sp_code ( id_name_sp_code ), '.
+    'INDEX dk_id_name_sp_corrected ( id_name_sp_corrected ), '.
     'INDEX dk_id_name_sp_simple ( id_name_sp_simple ), '.
     'INDEX dk_id_name_sp_no_parens ( id_name_sp_no_parens ), '.
     'INDEX dk_id_name_sp_no_units ( id_name_sp_no_units ) '.
@@ -370,6 +383,7 @@ $result = $db->query(
   'UPDATE data '.
   'JOIN temp_data USING( uid ) '.
   'SET data.id_name_sp_code = temp_data.id_name_sp_code, '.
+      'data.id_name_sp_corrected = temp_data.id_name_sp_corrected, '.
       'data.id_name_sp_simple = temp_data.id_name_sp_simple, '.
       'data.id_name_sp_no_parens = temp_data.id_name_sp_no_parens,'.
       'data.id_name_sp_no_units = temp_data.id_name_sp_no_units'

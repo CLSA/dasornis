@@ -7,7 +7,7 @@ SELECT "Testing for direct drug matches" AS "";
 INSERT INTO data_has_dp_product( uid, dp_id, type )
 SELECT DISTINCT uid, dp_id, "direct"
 FROM data
-JOIN drug_name ON id_name_sp = drug_name.name;
+JOIN drug_name ON id_name_sp_corrected = drug_name.name;
 
 SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
@@ -17,7 +17,7 @@ SELECT "Testing for direct natural matches" AS "";
 INSERT INTO data_has_nhp_product( uid, nhp_id, type )
 SELECT DISTINCT uid, nhp_id, "direct"
 FROM data
-JOIN natural_name ON id_name_sp = natural_name.name
+JOIN natural_name ON id_name_sp_corrected = natural_name.name
 WHERE uid NOT IN (
   SELECT DISTINCT uid FROM data_has_dp_product UNION SELECT DISTINCT uid FROM data_has_nhp_product
 );
@@ -57,7 +57,7 @@ INSERT INTO data_has_dp_product( uid, dp_id, type )
 SELECT DISTINCT uid, dp_id, "word"
 FROM data
 JOIN drug_name ON CHAR_LENGTH( name ) > 3
-AND id_name_sp RLIKE CONCAT(
+AND id_name_sp_corrected RLIKE CONCAT(
   "( |^)",
   REPLACE(
     REPLACE(
@@ -95,7 +95,7 @@ INSERT INTO data_has_nhp_product( uid, nhp_id, type )
 SELECT DISTINCT uid, nhp_id, "word"
 FROM data
 JOIN natural_name ON CHAR_LENGTH( name ) > 3
-AND id_name_sp RLIKE CONCAT(
+AND id_name_sp_corrected RLIKE CONCAT(
   "( |^)",
   REPLACE(
     REPLACE(
@@ -132,7 +132,7 @@ SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 -- INSERT INTO data_has_dp_product( uid, dp_id, type )
 -- SELECT DISTINCT uid, dp_id, "reverse-word"
 -- FROM data
--- JOIN drug_name ON CHAR_LENGTH( id_name_sp ) > 3
+-- JOIN drug_name ON CHAR_LENGTH( id_name_sp_corrected ) > 3
 -- AND name RLIKE CONCAT(
 --   "( |^)",
 --   REPLACE(
@@ -140,7 +140,7 @@ SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 --       REPLACE(
 --         REPLACE(
 --           REPLACE(
---             id_name_sp,
+--             id_name_sp_corrected,
 --             ".",
 --             "[.]"
 --           ),
@@ -170,7 +170,7 @@ SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 -- INSERT INTO data_has_nhp_product( uid, nhp_id, type )
 -- SELECT DISTINCT uid, nhp_id, "reverse-word"
 -- FROM data
--- JOIN natural_name ON CHAR_LENGTH( id_name_sp ) > 3
+-- JOIN natural_name ON CHAR_LENGTH( id_name_sp_corrected ) > 3
 -- AND name RLIKE CONCAT(
 --   "( |^)",
 --   REPLACE(
@@ -178,7 +178,7 @@ SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 --       REPLACE(
 --         REPLACE(
 --           REPLACE(
---             id_name_sp,
+--             id_name_sp_corrected,
 --             ".",
 --             "[.]"
 --           ),
