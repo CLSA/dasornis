@@ -9,7 +9,7 @@ $db->query( 'DROP TABLE IF EXISTS data_has_dp_product' );
 
 $db->query(
   'CREATE TABLE data_has_dp_product ( '.
-    'uid char(7) NOT NULL, '.
+    'uid char(10) NOT NULL, '.
     'dp_id int(11) NOT NULL, '.
     'type ENUM( "direct", "code", "word", "reverse-word", "simple", "no-parens", "no-units", "no-vowel", "soundex" ), '.
     'PRIMARY KEY (uid, dp_id), '.
@@ -33,7 +33,7 @@ $db->query( 'DROP TABLE IF EXISTS data_has_nhp_product' );
 
 $db->query(
   'CREATE TABLE data_has_nhp_product ( '.
-    'uid char(7) NOT NULL, '.
+    'uid char(10) NOT NULL, '.
     'nhp_id int(11) NOT NULL, '.
     'type ENUM( "direct", "code", "word", "reverse-word", "simple", "no-parens", "no-units", "no-vowel", "soundex" ), '.
     'PRIMARY KEY (uid, nhp_id), '.
@@ -284,11 +284,11 @@ $result = $db->query(
   'FROM information_schema.columns '.
   'WHERE table_schema = DATABASE() '.
   'AND table_name = "data" '.
-  'AND column_name IN ( "id_name_sp_code", "id_name_sp_corrected", "id_name_sp_simple", "id_name_sp_no_parens", "id_name_sp_no_units", "multiple" )'
+  'AND column_name IN ( "id_name_sp_code", "id_name_sp_corrected", "id_name_sp_simple", "id_name_sp_no_parens", "id_name_sp_no_units" )'
 );
 
 while( $row = $result->fetch_row() ) {
-  if( 'multiple' != $row[0] ) $db->query( sprintf( 'ALTER TABLE data DROP INDEX dk_%s', $row[0] ) );
+  $db->query( sprintf( 'ALTER TABLE data DROP INDEX dk_%s', $row[0] ) );
   $db->query( sprintf( 'ALTER TABLE data DROP COLUMN %s', $row[0] ) );
 }
 
@@ -299,7 +299,6 @@ $db->query(
   'ADD COLUMN id_name_sp_simple VARCHAR(127) DEFAULT NULL, '.
   'ADD COLUMN id_name_sp_no_parens VARCHAR(127) DEFAULT NULL, '.
   'ADD COLUMN id_name_sp_no_units VARCHAR(127) DEFAULT NULL, '.
-  'ADD COLUMN multiple TINYINT(1) DEFAULT NULL, '.
   'ADD INDEX dk_id_name_sp_code ( id_name_sp_code ), '.
   'ADD INDEX dk_id_name_sp_corrected ( id_name_sp_corrected ), '.
   'ADD INDEX dk_id_name_sp_simple ( id_name_sp_simple ), '.
@@ -359,7 +358,7 @@ file_put_contents( 'temp_data.csv', $data );
 
 $db->query(
   'CREATE TEMPORARY TABLE temp_data ( '.
-    'uid CHAR(7) NOT NULL, '.
+    'uid CHAR(10) NOT NULL, '.
     'id_name_sp_code VARCHAR(10), '.
     'id_name_sp_corrected VARCHAR(127), '.
     'id_name_sp_simple VARCHAR(127), '.

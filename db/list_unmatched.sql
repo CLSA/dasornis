@@ -1,4 +1,5 @@
-SELECT data.id_name_sp AS input,
+SELECT data.uid,
+       data.id_name_sp AS input,
        data.pres,
        data.dose_nb,
        data.dose_unit,
@@ -15,5 +16,4 @@ LEFT JOIN nhp_product ON data_has_nhp_product.nhp_id = nhp_product.id
 WHERE id_din_sp IS NULL
   AND id_name_sp IS NOT NULL
   AND ( dp_id IS NULL AND nhp_id IS NULL )
-GROUP BY uid
 ORDER BY id_name_sp;
