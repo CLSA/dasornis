@@ -1,29 +1,15 @@
 SELECT data.uid,
        data.id_name_sp AS input,
-       IFNULL( dp_product.brand_name, nhp_product.product_name ) AS `match`,
-       IFNULL( dp_product.din, nhp_product.npn ) AS `din/npn`,
-       IF(
-         dp_id IS NOT NULL,
-         IFNULL( GROUP_CONCAT( DISTINCT anumber ORDER BY anumber SEPARATOR " " ), "" ),
-         ""
-       ) AS `dtc`,
-       IF(
-         dp_id IS NOT NULL,
-         IFNULL( GROUP_CONCAT( DISTINCT ahfs_number ORDER BY ahfs_number SEPARATOR " " ), "" ),
-         ""
-       ) AS `ahfs`,
-       IF( dp_id IS NOT NULL, "drug", "natural" ) AS `database`,
-       IFNULL( data_has_dp_product.type, data_has_nhp_product.type ) AS type,
-       IFNULL( IF( also_natural_name, "yes", "no" ), "no" ) AS `both`
+       IFNULL( data_has_din.din, data_has_npn.npn ) AS `din/npn`,
+       IFNULL( MIN( dp_product.brand_name ), MIN( nhp_product.product_name ) ) AS `match`,
+       IF( data_has_din.din IS NOT NULL, "drug", "natural" ) AS `database`,
+       IFNULL( data_has_din.type, data_has_npn.type ) AS type,
+       IFNULL( data_has_din.source, data_has_npn.source ) AS source
 FROM data
-LEFT JOIN data_has_dp_product USING( uid )
-LEFT JOIN dp_product ON data_has_dp_product.dp_id = dp_product.id
-LEFT JOIN drug_name USING( dp_id )
-LEFT JOIN dp_therapeutic_class USING( dp_id )
-LEFT JOIN data_has_nhp_product USING( uid )
-LEFT JOIN nhp_product ON data_has_nhp_product.nhp_id = nhp_product.id
-WHERE id_din_sp IS NULL
-  AND id_name_sp IS NOT NULL
-  AND ( dp_id IS NOT NULL OR nhp_id IS NOT NULL )
-GROUP BY uid
+LEFT JOIN data_has_din USING( uid )
+LEFT JOIN dp_product USING( din )
+LEFT JOIN data_has_npn USING( uid )
+LEFT JOIN nhp_product USING ( npn )
+WHERE data.match_found = 1
+GROUP BY uid, IFNULL( din, npn )
 ORDER BY data.uid;

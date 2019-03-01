@@ -52,6 +52,4 @@ SET uid = CONCAT( @col_0, "-", REPEAT( "0", 2-CHAR_LENGTH( @col_1 ) ), @col_1 ),
     start_sp = IF( "" = @col_17, NULL, @col_17 ),
     reason_sp = IF( "" = @col_19, NULL, @col_19 );
 
-DELETE FROM data WHERE id_din_sp IS NOT NULL;
-
 SELECT COUNT(*) AS "Records Added" FROM data;

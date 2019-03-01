@@ -13,6 +13,7 @@ CREATE TABLE dp_product (
   last_update_date DATE,
   ai_group_no VARCHAR(10),
   PRIMARY KEY (id),
+  KEY dk_din( din ),
   KEY dk_brand_name ( brand_name ),
   KEY dk_categorization ( categorization ),
   KEY dk_class ( class ),
