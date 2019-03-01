@@ -582,7 +582,7 @@ $db->query(
 
 $data = '';
 $result = $db->query(
-  'SELECT uid, LOWER( IFNULL( REPLACE( id_name_sp, input, output ), id_name_sp ) ), id_din_sp '.
+  'SELECT uid, IFNULL( REPLACE( LOWER( id_name_sp ), input, output ), LOWER( id_name_sp ) ), id_din_sp '.
   'FROM data '.
   'LEFT JOIN lookup ON LOWER( id_name_sp ) RLIKE CONCAT( "[[:<:]]", LOWER( input ), "[[:>:]]" ) '.
   'WHERE id_name_sp IS NOT NULL'
