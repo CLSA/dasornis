@@ -1,5 +1,5 @@
 SELECT data.uid,
-       data.id_name_sp AS input,
+       IFNULL( data.id_name_sp, data.id_din_sp ) AS input,
        IFNULL( data_has_din.din, data_has_npn.npn ) AS `din/npn`,
        IFNULL( MIN( dp_product.brand_name ), MIN( nhp_product.product_name ) ) AS `match`,
        IF( data_has_din.din IS NOT NULL, "drug", "natural" ) AS `database`,

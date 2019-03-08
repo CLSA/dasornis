@@ -1,5 +1,5 @@
 SELECT data.uid,
-       data.id_name_sp AS input,
+       IFNULL( data.id_name_sp, data.id_din_sp ) AS input,
        data.pres,
        data.dose_nb,
        data.dose_unit,
@@ -11,7 +11,6 @@ SELECT data.uid,
 FROM data
 LEFT JOIN data_has_din USING( uid )
 LEFT JOIN data_has_npn USING( uid )
-WHERE data.id_name_sp IS NOT NULL
-  AND din IS NULL
+WHERE din IS NULL
   AND npn IS NULL
-ORDER BY id_name_sp;
+ORDER BY uid;
