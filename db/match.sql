@@ -11,9 +11,9 @@ FROM data
 JOIN prematch
 ON id_name_sp_corrected LIKE CONCAT( "%", match1, "%" )
 AND IF( match2 IS NULL, 1, id_name_sp_corrected LIKE CONCAT( "%", match2, "%" ) )
-AND IF( match3 IS NULL, 1, id_name_sp_corrected LIKE CONCAT( "%", match2, "%" ) )
-AND IF( match4 IS NULL, 1, id_name_sp_corrected LIKE CONCAT( "%", match2, "%" ) )
-AND IF( match5 IS NULL, 1, id_name_sp_corrected LIKE CONCAT( "%", match2, "%" ) )
+AND IF( match3 IS NULL, 1, id_name_sp_corrected LIKE CONCAT( "%", match3, "%" ) )
+AND IF( match4 IS NULL, 1, id_name_sp_corrected LIKE CONCAT( "%", match4, "%" ) )
+AND IF( match5 IS NULL, 1, id_name_sp_corrected LIKE CONCAT( "%", match5, "%" ) )
 WHERE match_found = 0
 AND din IS NOT NULL;
 
@@ -30,9 +30,9 @@ FROM data
 JOIN prematch
 ON id_name_sp_corrected LIKE CONCAT( "%", match1, "%" )
 AND IF( match2 IS NULL, 1, id_name_sp_corrected LIKE CONCAT( "%", match2, "%" ) )
-AND IF( match3 IS NULL, 1, id_name_sp_corrected LIKE CONCAT( "%", match2, "%" ) )
-AND IF( match4 IS NULL, 1, id_name_sp_corrected LIKE CONCAT( "%", match2, "%" ) )
-AND IF( match5 IS NULL, 1, id_name_sp_corrected LIKE CONCAT( "%", match2, "%" ) )
+AND IF( match3 IS NULL, 1, id_name_sp_corrected LIKE CONCAT( "%", match3, "%" ) )
+AND IF( match4 IS NULL, 1, id_name_sp_corrected LIKE CONCAT( "%", match4, "%" ) )
+AND IF( match5 IS NULL, 1, id_name_sp_corrected LIKE CONCAT( "%", match5, "%" ) )
 WHERE match_found = 0
 AND npn IS NOT NULL;
 
