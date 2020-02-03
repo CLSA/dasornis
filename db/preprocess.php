@@ -263,6 +263,7 @@ $db->query(
   'LEFT JOIN natural_name USING( npn, name ) '.
   'WHERE main = 0 '.
   'AND natural_name.npn IS NULL '.
+  'AND name IS NOT NULL '.
   'GROUP BY name'
 );
 
@@ -466,6 +467,7 @@ $db->query(
   ') SELECT common_name AS name, MIN( npn ) AS npn '.
   'FROM nhp_medicinal_ingredient '.
   'JOIN nhp_product ON nhp_medicinal_ingredient.nhp_id = nhp_product.id '.
+  'WHERE common_name IS NOT NULL '.
   'GROUP BY common_name'
 );
 
