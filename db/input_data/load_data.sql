@@ -5,6 +5,8 @@ SET collation_connection = 'utf8_general_ci';
 
 SELECT "Creating data table" AS "";
 
+DROP TABLE IF EXISTS data_has_din;
+DROP TABLE IF EXISTS data_has_npn;
 DROP TABLE IF EXISTS data;
 CREATE TABLE data (
   uid CHAR(10) NOT NULL,

@@ -57,7 +57,7 @@ UPDATE data JOIN data_has_din USING( uid ) SET match_found = 1;
 SELECT "Testing for NPN matches" AS "";
 
 INSERT INTO data_has_npn( uid, npn, type, source )
-SELECT DISTINCT uid, nhp_product.id, "code", "code"
+SELECT DISTINCT uid, nhp_product.npn, "code", "code"
 FROM data
 JOIN nhp_product ON CONVERT( id_name_sp_code, INT ) = CONVERT( nhp_product.npn, INT )
 WHERE match_found = 0;

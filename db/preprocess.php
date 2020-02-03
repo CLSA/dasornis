@@ -589,9 +589,9 @@ $result = $db->query(
 );
 while( $row = $result->fetch_row() ) if( $row[0] && $row[1] ) {
   $code = $row[2];
+  $matches = array();
   if( is_null( $code ) )
   {
-    $matches = array();
     preg_match( "/[0-9]{6,}/", $row[1], $matches );
     if( 0 < count( $matches ) ) $code = str_pad( $matches[0], 8, "0", STR_PAD_LEFT );
   }
