@@ -590,11 +590,12 @@ $result = $db->query(
   'WHERE id_name_sp IS NOT NULL'
 );
 while( $row = $result->fetch_row() ) if( $row[0] && $row[1] ) {
+  $input = str_replace( '"', '\"', $row[1] );
   $code = $row[2];
   $matches = array();
   if( is_null( $code ) )
   {
-    preg_match( "/[0-9]{6,}/", $row[1], $matches );
+    preg_match( "/[0-9]{6,}/", $input, $matches );
     if( 0 < count( $matches ) ) $code = str_pad( $matches[0], 8, "0", STR_PAD_LEFT );
   }
   $data .= sprintf(
@@ -603,9 +604,9 @@ while( $row = $result->fetch_row() ) if( $row[0] && $row[1] ) {
       '"%s",%s,"%s","%s","%s","%s"'."\n",
     $row[0],
     is_null( $code ) ? 'NULL' : '"'.$code.'"',
-    $row[1],
-    preg_replace( '/[^a-z0-9]/', '', $row[1] ),
-    preg_replace( '/ *\([^)]+\)/', '', $row[1] ),
+    $input,
+    preg_replace( '/[^a-z0-9]/', '', $input ),
+    preg_replace( '/ *\([^)]+\)/', '', $input ),
     trim( preg_replace(
       array_reverse( array(
         '/ *\(?[0-9.,:;\-\/ ]+ ?mm\)?/',
@@ -632,7 +633,7 @@ while( $row = $result->fetch_row() ) if( $row[0] && $row[1] ) {
         '/ *\(?[0-9.,:;\-\/ ]+ ?gr\)?/',
         '/ *\(?[0-9.,:;\-\/ ]+ ?[cd]h ?- ?[0-9.,:;\-\/ ]+ ?[cd]h\)?/',
         '/ *\(?[0-9.,:;\-\/ ]+ ?x ?- ?c[0-9.,:;\-\/ ]+ ?\)?/'
-      ) ), '', $row[1]
+      ) ), '', $input
     ) )
   );
 }

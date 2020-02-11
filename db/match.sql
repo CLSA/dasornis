@@ -73,7 +73,8 @@ INSERT INTO data_has_din( uid, din, type, source )
 SELECT DISTINCT uid, din, "direct", "product"
 FROM data
 JOIN drug_name ON id_name_sp_corrected = drug_name.name
-WHERE match_found = 0;
+WHERE match_found = 0
+AND drug_name.din IS NOT NULL;
 
 SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
@@ -160,7 +161,8 @@ AND id_name_sp_corrected RLIKE CONCAT(
   ),
   "( |$)"
 )
-WHERE match_found = 0;
+WHERE match_found = 0
+AND drug_name.din IS NOT NULL;
 
 SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
@@ -347,7 +349,8 @@ AND name RLIKE CONCAT(
   ),
   "( |$)"
 )
-WHERE match_found = 0;
+WHERE match_found = 0
+AND drug_name.din IS NOT NULL;
 
 SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
@@ -397,7 +400,9 @@ INSERT INTO data_has_din( uid, din, type, source )
 SELECT DISTINCT uid, din, "simple", "product"
 FROM data
 JOIN drug_name ON data.id_name_sp_simple = drug_name.name_simple
-WHERE match_found = 0;
+WHERE match_found = 0
+AND drug_name.din IS NOT NULL
+AND data.id_name_sp_simple != "";
 
 SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
@@ -409,7 +414,8 @@ INSERT INTO data_has_din( uid, din, type, source )
 SELECT DISTINCT uid, din, "simple", "ingredient"
 FROM data
 JOIN drug_ingredient_name ON data.id_name_sp_simple = drug_ingredient_name.name_simple
-WHERE match_found = 0;
+WHERE match_found = 0
+AND data.id_name_sp_simple != "";
 
 SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
@@ -422,7 +428,8 @@ INSERT INTO data_has_npn( uid, npn, type, source )
 SELECT DISTINCT uid, npn, "simple", "product"
 FROM data
 JOIN natural_name ON data.id_name_sp_simple = natural_name.name_simple
-WHERE match_found = 0;
+WHERE match_found = 0
+AND data.id_name_sp_simple != "";
 
 SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
@@ -434,7 +441,8 @@ INSERT INTO data_has_npn( uid, npn, type, source )
 SELECT DISTINCT uid, npn, "simple", "proper"
 FROM data
 JOIN natural_proper_name ON data.id_name_sp_simple = natural_proper_name.name_simple
-WHERE match_found = 0;
+WHERE match_found = 0
+AND data.id_name_sp_simple != "";
 
 SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
@@ -446,7 +454,8 @@ INSERT INTO data_has_npn( uid, npn, type, source )
 SELECT DISTINCT uid, npn, "simple", "common"
 FROM data
 JOIN natural_common_name ON data.id_name_sp_simple = natural_common_name.name_simple
-WHERE match_found = 0;
+WHERE match_found = 0
+AND data.id_name_sp_simple != "";
 
 SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
@@ -459,7 +468,8 @@ INSERT INTO data_has_din( uid, din, type, source )
 SELECT DISTINCT uid, din, "no-parens", "product"
 FROM data
 JOIN drug_name ON data.id_name_sp_no_parens = drug_name.name_no_parens
-WHERE match_found = 0;
+WHERE match_found = 0
+AND drug_name.din IS NOT NULL;
 
 SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
@@ -521,7 +531,8 @@ INSERT INTO data_has_din( uid, din, type, source )
 SELECT DISTINCT uid, din, "no-units", "product"
 FROM data
 JOIN drug_name ON data.id_name_sp_no_units = drug_name.name_no_units
-WHERE match_found = 0;
+WHERE match_found = 0
+AND drug_name.din IS NOT NULL;
 
 SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
