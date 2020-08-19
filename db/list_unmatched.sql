@@ -1,5 +1,5 @@
 SELECT data.uid,
-       IFNULL( data.id_name_sp, data.id_din_sp ) AS input,
+       REPLACE( IFNULL( data.id_name_sp, data.id_din_sp ), '"', '""' ) AS input,
        data.pres,
        data.dose_nb,
        data.dose_unit,
