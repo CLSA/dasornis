@@ -32,3 +32,11 @@ LINES TERMINATED BY "\n"
 ( @col_0, @col_1 )
 SET dp_id = @col_0,
     schedule = NULLIF( @col_1, "" );
+
+LOAD DATA LOCAL INFILE "enc_schedule_dr.txt"
+INTO TABLE dp_schedule CHARACTER SET UTF8
+FIELDS TERMINATED BY "," ENCLOSED BY '"'
+LINES TERMINATED BY "\n"
+( @col_0, @col_1 )
+SET dp_id = @col_0,
+    schedule = NULLIF( @col_1, "" );

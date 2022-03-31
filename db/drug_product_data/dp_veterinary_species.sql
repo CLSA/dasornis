@@ -35,3 +35,12 @@ LINES TERMINATED BY "\n"
 SET dp_id = @col_0,
     species = NULLIF( @col_1, "" ),
     sub_species = NULLIF( @col_2, "" );
+
+LOAD DATA LOCAL INFILE "enc_vet_dr.txt"
+INTO TABLE dp_veterinary_species CHARACTER SET UTF8
+FIELDS TERMINATED BY "," ENCLOSED BY '"'
+LINES TERMINATED BY "\n"
+( @col_0, @col_1, @col_2 )
+SET dp_id = @col_0,
+    species = NULLIF( @col_1, "" ),
+    sub_species = NULLIF( @col_2, "" );

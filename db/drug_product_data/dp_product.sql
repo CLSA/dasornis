@@ -70,3 +70,20 @@ SET id = @col_0,
     number_of_ais = NULLIF( @col_8, "" ),
     last_update_date = str_to_date( @col_9, "%d-%b-%Y" ),
     ai_group_no = NULLIF( REPLACE( @col_a, '"', '' ), "" );
+
+LOAD DATA LOCAL INFILE "enc_drug_dr.txt"
+INTO TABLE dp_product CHARACTER SET UTF8
+FIELDS TERMINATED BY "," ENCLOSED BY '"'
+LINES TERMINATED BY "\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
+SET id = @col_0,
+    categorization = NULLIF( @col_1, "" ),
+    class = NULLIF( @col_2, "" ),
+    din = NULLIF( @col_3, "" ),
+    brand_name = NULLIF( @col_4, "" ),
+    descriptor = NULLIF( @col_5, "" ),
+    pediatric_flag = IF( ""=@col_6, NULL, IF( "Y"=@col_6, 1, 0 ) ),
+    accession_number = NULLIF( @col_7, "" ),
+    number_of_ais = NULLIF( @col_8, "" ),
+    last_update_date = str_to_date( @col_9, "%d-%b-%Y" ),
+    ai_group_no = NULLIF( REPLACE( @col_a, '"', '' ), "" );

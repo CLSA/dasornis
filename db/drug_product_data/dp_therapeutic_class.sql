@@ -45,3 +45,14 @@ SET dp_id = @col_0,
     atc = NULLIF( @col_2, "" ),
     ahfs_number = NULLIF( @col_3, "" ),
     ahfs = NULLIF( @col_4, "" );
+
+LOAD DATA LOCAL INFILE "enc_ther_dr.txt"
+INTO TABLE dp_therapeutic_class CHARACTER SET UTF8
+FIELDS TERMINATED BY "," ENCLOSED BY '"'
+LINES TERMINATED BY "\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4 )
+SET dp_id = @col_0,
+    anumber = NULLIF( @col_1, "" ),
+    atc = NULLIF( @col_2, "" ),
+    ahfs_number = NULLIF( @col_3, "" ),
+    ahfs = NULLIF( @col_4, "" );

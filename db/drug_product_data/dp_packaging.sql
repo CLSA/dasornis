@@ -51,3 +51,15 @@ SET dp_id = @col_0,
     package_type = NULLIF( @col_3, "" ),
     package_size = NULLIF( @col_4, "" ),
     product_information = NULLIF( @col_5, "" );
+
+LOAD DATA LOCAL INFILE "enc_package_dr.txt"
+INTO TABLE dp_packaging CHARACTER SET UTF8
+FIELDS TERMINATED BY "," ENCLOSED BY '"'
+LINES TERMINATED BY "\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5 )
+SET dp_id = @col_0,
+    upc = NULLIF( @col_1, "" ),
+    package_size_unit = NULLIF( @col_2, "" ),
+    package_type = NULLIF( @col_3, "" ),
+    package_size = NULLIF( @col_4, "" ),
+    product_information = NULLIF( @col_5, "" );

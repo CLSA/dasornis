@@ -36,3 +36,12 @@ LINES TERMINATED BY "\n"
 SET dp_id = @col_0,
     pharmaceutical_code = NULLIF( @col_1, "" ),
     pharmaceutical_form = NULLIF( @col_2, "" );
+
+LOAD DATA LOCAL INFILE "enc_form_dr.txt"
+INTO TABLE dp_form CHARACTER SET UTF8
+FIELDS TERMINATED BY "," ENCLOSED BY '"'
+LINES TERMINATED BY "\n"
+( @col_0, @col_1, @col_2 )
+SET dp_id = @col_0,
+    pharmaceutical_code = NULLIF( @col_1, "" ),
+    pharmaceutical_form = NULLIF( @col_2, "" );
