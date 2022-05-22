@@ -1,2 +1,2 @@
 #!/bin/bash
-mysql_db dasornis < match.sql
+mysql patrick_dasornis < match.sql

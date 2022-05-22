@@ -153,6 +153,7 @@ $db->query(
   ') SELECT ingredient AS name, MIN( din ) AS din '.
   'FROM dp_active_ingredient '.
   'JOIN dp_product ON dp_active_ingredient.dp_id = dp_product.id '.
+  'WHERE din IS NOT NULL '.
   'GROUP BY ingredient'
 );
 
@@ -373,6 +374,7 @@ $db->query(
   ') SELECT proper_name AS name, MIN( npn ) AS npn '.
   'FROM nhp_medicinal_ingredient '.
   'JOIN nhp_product ON nhp_medicinal_ingredient.nhp_id = nhp_product.id '.
+  'WHERE proper_name IS NOT NULL '.
   'GROUP BY proper_name'
 );
 
