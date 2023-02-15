@@ -1,0 +1,8 @@
+Generates a list of all existing, new and defunct drugs.
+
+Existing data is based on the current list (downloaded from Pine).
+New drug data is from the January 2023 update of the Health Canada Drug Product Database (DPD):
+http://www.hc-sc.gc.ca/dhp-mps/prodpharma/databasdon/dp_bdpp_data_extract-eng.php
+
+1) Unzip database.20230103.tar.gz then run ./convert.sh to remove windows-style endlines.
+2) Run the load_data.sql script into a temporary database (sandbox), then run ./generate_lookup_data.sh
