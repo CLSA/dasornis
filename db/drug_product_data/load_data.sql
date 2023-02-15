@@ -25,5 +25,5 @@ source dp_pharmaceutical_standard.sql
 source dp_route.sql
 source dp_schedule.sql
 source dp_status.sql
--- source dp_therapeutic_class.sql
+source dp_therapeutic_class.sql
 source dp_veterinary_species.sql
