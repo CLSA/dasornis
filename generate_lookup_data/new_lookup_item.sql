@@ -7,6 +7,7 @@ CREATE TABLE new_lookup_item (
   status ENUM('approved', 'marketed', 'cancelled', 'dormant'),
   name VARCHAR(255) NOT NULL,
   description TEXT NULL DEFAULT NULL,
+  aig VARCHAR(10) NULL DEFAULT NULL,
   atc_number VARCHAR(20) NULL DEFAULT NULL,
   atc VARCHAR(120) NULL DEFAULT NULL,
   PRIMARY KEY (id),
@@ -14,7 +15,7 @@ CREATE TABLE new_lookup_item (
   UNIQUE KEY uq_identifier (identifier)
 ) ENGINE=InnoDB CHARSET=utf8;
 
-INSERT INTO new_lookup_item( identifier, status, name, description, atc_number, atc )
+INSERT INTO new_lookup_item( identifier, status, name, description, aig, atc_number, atc )
 SELECT
   din,
   status,
@@ -32,6 +33,7 @@ SELECT
     ),
     ")"
   ) AS description,
+  ai_group_no AS aig,
   GROUP_CONCAT( atc_number ORDER BY atc_number SEPARATOR ";" ) AS atc_number,
   GROUP_CONCAT( atc ORDER BY atc SEPARATOR ";" ) AS atc
 FROM dp_product

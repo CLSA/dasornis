@@ -8,6 +8,7 @@ mysql patrick_sandbox -e '
     IF( lookup_item.name = new_lookup_item.name, "", new_lookup_item.name ) AS "new name",
     lookup_item.description,
     IF( lookup_item.description = new_lookup_item.description, "", new_lookup_item.description ) AS "new description",
+    aig,
     atc_number AS "atc_number(s)",
     atc AS "atc(s)",
     GROUP_CONCAT( indicator.name ORDER BY indicator.name SEPARATOR ";" ) AS "indicator(s)"
@@ -25,6 +26,7 @@ mysql patrick_sandbox -e '
     new_lookup_item.status,
     new_lookup_item.name,
     new_lookup_item.description,
+    aig,
     atc_number AS "atc_number(s)",
     atc AS "atc(s)"
   FROM new_lookup_item
