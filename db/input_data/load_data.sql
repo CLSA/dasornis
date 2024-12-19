@@ -10,17 +10,17 @@ DROP TABLE IF EXISTS data_has_npn;
 DROP TABLE IF EXISTS data;
 CREATE TABLE data (
   uid CHAR(10) NOT NULL,
-  id ENUM( "DIN","MEDICATION-NAME" ) COMMENT "Opal variable: MEDI_ID_1_COM",
-  id_din_sp CHAR(8) COMMENT "Opal variable: MEDI_ID_DIN_SP_1_COM",
-  id_name_sp VARCHAR(127) COMMENT "Opal variable: MEDI_ID_NAME_SP_1_COM",
-  pres VARCHAR(127) COMMENT "Opal Variable: MEDI_PRES_1_COM",
-  dose_nb FLOAT COMMENT "Opal variable: MEDI_DOSE_NB_1_COM",
-  dose_unit VARCHAR(127) COMMENT "Opal Variable: MEDI_DOSE_UNIT_",
-  dose_frq VARCHAR(127) COMMENT "Opal Variable: MEDI_DOSE_FRQ_1_COM",
-  dose_frq_otsp VARCHAR(1023) COMMENT "Opal variable: MEDI_DOSE_FRQ_OTSP_1_COM",
-  dose_cmt VARCHAR(1023) COMMENT "Opal variable: MEDI_DOSE_CMT_1_COM",
-  use2 VARCHAR(127) COMMENT "Opal Variable: MEDI_USE2_1_COM",
-  reason_sp VARCHAR(1023) COMMENT "Opal variable: MEDI_REASON_SP_1_COM",
+  id ENUM( "DIN","MEDICATION-NAME" ) COMMENT "Opal variable: MEDI_ID_1",
+  id_din_sp CHAR(8) COMMENT "Opal variable: MEDI_ID_DIN_SP_1",
+  id_name_sp VARCHAR(127) COMMENT "Opal variable: MEDI_ID_NAME_SP_1",
+  pres VARCHAR(127) COMMENT "Opal Variable: MEDI_PRES_1",
+  dose_nb FLOAT COMMENT "Opal variable: MEDI_DOSE_NB_1",
+  dose_unit VARCHAR(127) COMMENT "Opal Variable: MEDI_DOSE_UNIT",
+  dose_frq VARCHAR(127) COMMENT "Opal Variable: MEDI_DOSE_FRQ_1",
+  dose_frq_otsp VARCHAR(1023) COMMENT "Opal variable: MEDI_DOSE_FRQ_OTSP_1",
+  dose_cmt VARCHAR(1023) COMMENT "Opal variable: MEDI_DOSE_CMT_1",
+  use2 VARCHAR(127) COMMENT "Opal Variable: MEDI_USE2_1",
+  reason_sp VARCHAR(1023) COMMENT "Opal variable: MEDI_REASON_SP_1",
   PRIMARY KEY (uid),
   INDEX dk_id_din_sp ( id_din_sp ),
   INDEX dk_id_name_sp ( id_name_sp ),
@@ -38,7 +38,7 @@ LINES TERMINATED BY "\n"
 IGNORE 1 LINES
 ( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9,
   @col_10, @col_11, @col_12, @col_13, @col_14, @col_15, @col_16, @col_17, @col_18, @col_19 )
-SET uid = CONCAT( @col_0, "-", REPEAT( "0", 2-CHAR_LENGTH( @col_1 ) ), @col_1 ),
+SET uid = CONCAT( REPEAT( "0", 7-CHAR_LENGTH( @col_0 ) ), @col_0, "-", REPEAT( "0", 2-CHAR_LENGTH( @col_1 ) ), @col_1 ),
     id = IF( "" = @col_2, NULL, @col_2 ),
     id_din_sp = IF( "" = @col_3, NULL, @col_3 ),
     id_name_sp = IF( "" = @col_4, NULL, @col_4 ),
@@ -48,7 +48,7 @@ SET uid = CONCAT( @col_0, "-", REPEAT( "0", 2-CHAR_LENGTH( @col_1 ) ), @col_1 ),
     dose_frq = IF( "" = @col_8, NULL, @col_8 ),
     dose_frq_otsp = IF( "" = @col_9, NULL, @col_9 ),
     dose_cmt = IF( "" = @col_10, NULL, @col_10 ),
-    use2 = IF( "" = @col_11, NULL, @col_11 ),
+    use2 = IF( "" = @col_14, NULL, @col_14 ),
     reason_sp = IF( "" = @col_16, NULL, @col_16 );
 
 SELECT COUNT(*) AS "Records Added" FROM data;

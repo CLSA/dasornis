@@ -9,7 +9,10 @@ SELECT data.uid,
        GROUP_CONCAT( DISTINCT atc ORDER BY atc SEPARATOR "|" ) AS atc,
        GROUP_CONCAT( DISTINCT ahfs_number ORDER BY ahfs_number SEPARATOR "|" ) AS ahfs_number,
        GROUP_CONCAT( DISTINCT ahfs ORDER BY ahfs SEPARATOR "|" ) AS ahfs,
-       GROUP_CONCAT( DISTINCT IFNULL( ingredient, proper_name ) ORDER BY ingredient SEPARATOR "|" ) AS ingredients
+       GROUP_CONCAT(
+         DISTINCT REPLACE( IFNULL( ingredient, proper_name ), '"', '""' )
+         ORDER BY ingredient SEPARATOR "|"
+       ) AS ingredients
 FROM data
 LEFT JOIN data_has_din USING( uid )
 LEFT JOIN dp_product USING( din )
