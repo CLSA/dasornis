@@ -10,6 +10,7 @@ CREATE TABLE dp_status (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
+SELECT "Loading enc_status.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_status.txt"
 INTO TABLE dp_status CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -20,6 +21,9 @@ SET dp_id = @col_0,
     status = NULLIF( @col_2, "" ),
     history_date = str_to_date( @col_3, "%d-%b-%Y" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_status_ap.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_status_ap.txt"
 INTO TABLE dp_status CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -30,6 +34,9 @@ SET dp_id = @col_0,
     status = NULLIF( @col_2, "" ),
     history_date = str_to_date( @col_3, "%d-%b-%Y" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_status_ia.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_status_ia.txt"
 INTO TABLE dp_status CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -40,6 +47,9 @@ SET dp_id = @col_0,
     status = NULLIF( @col_2, "" ),
     history_date = str_to_date( @col_3, "%d-%b-%Y" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_status_dr.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_status_dr.txt"
 INTO TABLE dp_status CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -49,3 +59,5 @@ SET dp_id = @col_0,
     current_status_flag = IF( ""=@col_1, NULL, IF( "Y"=@col_1, 1, 0 ) ),
     status = NULLIF( @col_2, "" ),
     history_date = str_to_date( @col_3, "%d-%b-%Y" );
+
+SHOW WARNINGS;

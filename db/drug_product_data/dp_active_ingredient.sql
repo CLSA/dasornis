@@ -19,6 +19,7 @@ CREATE TABLE dp_active_ingredient (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
+SELECT "Loading enc_ingred.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_ingred.txt"
 INTO TABLE dp_active_ingredient CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -35,6 +36,9 @@ SET dp_id = @col_0,
     dosage_unit = NULLIF( @col_9, "" ),
     notes = NULLIF( @col_a, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_ingred_ap.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_ingred_ap.txt"
 INTO TABLE dp_active_ingredient CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -51,6 +55,9 @@ SET dp_id = @col_0,
     dosage_unit = NULLIF( @col_9, "" ),
     notes = NULLIF( @col_a, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_ingred_ia.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_ingred_ia.txt"
 INTO TABLE dp_active_ingredient CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -67,6 +74,9 @@ SET dp_id = @col_0,
     dosage_unit = NULLIF( @col_9, "" ),
     notes = NULLIF( @col_a, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_ingred_dr.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_ingred_dr.txt"
 INTO TABLE dp_active_ingredient CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -82,3 +92,5 @@ SET dp_id = @col_0,
     base = IF( ""=@col_8, NULL, IF( "Y"=@col_8, 1, 0 ) ),
     dosage_unit = NULLIF( @col_9, "" ),
     notes = NULLIF( @col_a, "" );
+
+SHOW WARNINGS;

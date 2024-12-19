@@ -20,6 +20,7 @@ CREATE TABLE dp_product (
   KEY dk_number_of_ais ( number_of_ais )
 ) ENGINE=InnoDB CHARSET=utf8;
 
+SELECT "Loading enc_drug.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_drug.txt"
 INTO TABLE dp_product CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -37,6 +38,9 @@ SET id = @col_0,
     last_update_date = str_to_date( @col_9, "%d-%b-%Y" ),
     ai_group_no = NULLIF( REPLACE( @col_a, '"', '' ), "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_drug_ap.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_drug_ap.txt"
 INTO TABLE dp_product CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -54,6 +58,9 @@ SET id = @col_0,
     last_update_date = str_to_date( @col_9, "%d-%b-%Y" ),
     ai_group_no = NULLIF( REPLACE( @col_a, '"', '' ), "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_drug_ia.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_drug_ia.txt"
 INTO TABLE dp_product CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -71,6 +78,9 @@ SET id = @col_0,
     last_update_date = str_to_date( @col_9, "%d-%b-%Y" ),
     ai_group_no = NULLIF( REPLACE( @col_a, '"', '' ), "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_drug_dr.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_drug_dr.txt"
 INTO TABLE dp_product CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -87,3 +97,5 @@ SET id = @col_0,
     number_of_ais = NULLIF( @col_8, "" ),
     last_update_date = str_to_date( @col_9, "%d-%b-%Y" ),
     ai_group_no = NULLIF( REPLACE( @col_a, '"', '' ), "" );
+
+SHOW WARNINGS;

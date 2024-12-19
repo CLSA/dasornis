@@ -16,6 +16,7 @@ CREATE TABLE dp_packaging (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
+SELECT "Loading enc_package.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_package.txt"
 INTO TABLE dp_packaging CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -28,6 +29,9 @@ SET dp_id = @col_0,
     package_size = NULLIF( @col_4, "" ),
     product_information = NULLIF( @col_5, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_package_ap.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_package_ap.txt"
 INTO TABLE dp_packaging CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -40,6 +44,9 @@ SET dp_id = @col_0,
     package_size = NULLIF( @col_4, "" ),
     product_information = NULLIF( @col_5, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_package_ia.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_package_ia.txt"
 INTO TABLE dp_packaging CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -52,6 +59,9 @@ SET dp_id = @col_0,
     package_size = NULLIF( @col_4, "" ),
     product_information = NULLIF( @col_5, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_package_dr.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_package_dr.txt"
 INTO TABLE dp_packaging CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -63,3 +73,5 @@ SET dp_id = @col_0,
     package_type = NULLIF( @col_3, "" ),
     package_size = NULLIF( @col_4, "" ),
     product_information = NULLIF( @col_5, "" );
+
+SHOW WARNINGS;

@@ -51,4 +51,5 @@ SET uid = CONCAT( REPEAT( "0", 7-CHAR_LENGTH( @col_0 ) ), @col_0, "-", REPEAT( "
     use2 = IF( "" = @col_14, NULL, @col_14 ),
     reason_sp = IF( "" = @col_16, NULL, @col_16 );
 
+SHOW WARNINGS;
 SELECT COUNT(*) AS "Records Added" FROM data;

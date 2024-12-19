@@ -23,6 +23,7 @@ CREATE TABLE dp_company (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
+SELECT "Loading enc_comp.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_comp.txt"
 INTO TABLE dp_company CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -45,6 +46,9 @@ SET dp_id = @col_0,
     postal_code = NULLIF( @col_e, "" ),
     post_office_box = NULLIF( @col_f, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_comp_ap.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_comp_ap.txt"
 INTO TABLE dp_company CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -67,6 +71,9 @@ SET dp_id = @col_0,
     postal_code = NULLIF( @col_e, "" ),
     post_office_box = NULLIF( @col_f, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_comp_ia.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_comp_ia.txt"
 INTO TABLE dp_company CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -89,6 +96,9 @@ SET dp_id = @col_0,
     postal_code = NULLIF( @col_e, "" ),
     post_office_box = NULLIF( @col_f, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_comp_dr.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_comp_dr.txt"
 INTO TABLE dp_company CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -110,3 +120,5 @@ SET dp_id = @col_0,
     country = NULLIF( @col_d, "" ),
     postal_code = NULLIF( @col_e, "" ),
     post_office_box = NULLIF( @col_f, "" );
+
+SHOW WARNINGS;

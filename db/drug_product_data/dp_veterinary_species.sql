@@ -9,6 +9,7 @@ CREATE TABLE dp_veterinary_species (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
+SELECT "Loading enc_vet.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_vet.txt"
 INTO TABLE dp_veterinary_species CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -18,6 +19,9 @@ SET dp_id = @col_0,
     species = NULLIF( @col_1, "" ),
     sub_species = NULLIF( @col_2, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_vet_ap.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_vet_ap.txt"
 INTO TABLE dp_veterinary_species CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -27,6 +31,9 @@ SET dp_id = @col_0,
     species = NULLIF( @col_1, "" ),
     sub_species = NULLIF( @col_2, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_vet_ia.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_vet_ia.txt"
 INTO TABLE dp_veterinary_species CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -36,6 +43,9 @@ SET dp_id = @col_0,
     species = NULLIF( @col_1, "" ),
     sub_species = NULLIF( @col_2, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_vet_dr.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_vet_dr.txt"
 INTO TABLE dp_veterinary_species CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -44,3 +54,5 @@ LINES TERMINATED BY "\n"
 SET dp_id = @col_0,
     species = NULLIF( @col_1, "" ),
     sub_species = NULLIF( @col_2, "" );
+
+SHOW WARNINGS;

@@ -10,6 +10,7 @@ CREATE TABLE dp_form (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
+SELECT "Loading enc_form.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_form.txt"
 INTO TABLE dp_form CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -19,6 +20,9 @@ SET dp_id = @col_0,
     pharmaceutical_code = NULLIF( @col_1, "" ),
     pharmaceutical_form = NULLIF( @col_2, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_form_ap.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_form_ap.txt"
 INTO TABLE dp_form CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -28,6 +32,9 @@ SET dp_id = @col_0,
     pharmaceutical_code = NULLIF( @col_1, "" ),
     pharmaceutical_form = NULLIF( @col_2, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_form_ia.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_form_ia.txt"
 INTO TABLE dp_form CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -37,6 +44,9 @@ SET dp_id = @col_0,
     pharmaceutical_code = NULLIF( @col_1, "" ),
     pharmaceutical_form = NULLIF( @col_2, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_form_dr.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_form_dr.txt"
 INTO TABLE dp_form CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -45,3 +55,5 @@ LINES TERMINATED BY "\n"
 SET dp_id = @col_0,
     pharmaceutical_code = NULLIF( @col_1, "" ),
     pharmaceutical_form = NULLIF( @col_2, "" );
+
+SHOW WARNINGS;

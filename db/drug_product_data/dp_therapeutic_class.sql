@@ -13,6 +13,7 @@ CREATE TABLE dp_therapeutic_class (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
+SELECT "Loading enc_ther.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_ther.txt"
 INTO TABLE dp_therapeutic_class CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -24,6 +25,9 @@ SET dp_id = @col_0,
     ahfs_number = NULLIF( @col_3, "" ),
     ahfs = NULLIF( @col_4, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_ther_ap.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_ther_ap.txt"
 INTO TABLE dp_therapeutic_class CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -35,6 +39,9 @@ SET dp_id = @col_0,
     ahfs_number = NULLIF( @col_3, "" ),
     ahfs = NULLIF( @col_4, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_ther_ia.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_ther_ia.txt"
 INTO TABLE dp_therapeutic_class CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -46,6 +53,9 @@ SET dp_id = @col_0,
     ahfs_number = NULLIF( @col_3, "" ),
     ahfs = NULLIF( @col_4, "" );
 
+SHOW WARNINGS;
+
+SELECT "Loading enc_ther_dr.txt" AS "";
 LOAD DATA LOCAL INFILE "enc_ther_dr.txt"
 INTO TABLE dp_therapeutic_class CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
@@ -56,3 +66,5 @@ SET dp_id = @col_0,
     atc = NULLIF( @col_2, "" ),
     ahfs_number = NULLIF( @col_3, "" ),
     ahfs = NULLIF( @col_4, "" );
+
+SHOW WARNINGS;

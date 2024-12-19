@@ -16,14 +16,14 @@ DROP TABLE IF EXISTS dp_therapeutic_class;
 DROP TABLE IF EXISTS dp_veterinary_species;
 DROP TABLE IF EXISTS dp_product;
 
-source dp_product.sql
-source dp_company.sql
-source dp_form.sql
-source dp_active_ingredient.sql
-source dp_packaging.sql
-source dp_pharmaceutical_standard.sql
-source dp_route.sql
-source dp_schedule.sql
-source dp_status.sql
-source dp_therapeutic_class.sql
-source dp_veterinary_species.sql
+SOURCE dp_product.sql
+SOURCE dp_company.sql
+SOURCE dp_form.sql
+SOURCE dp_active_ingredient.sql
+SOURCE dp_packaging.sql
+SOURCE dp_pharmaceutical_standard.sql
+SOURCE dp_route.sql
+SOURCE dp_schedule.sql
+SOURCE dp_status.sql
+SOURCE dp_therapeutic_class.sql
+SOURCE dp_veterinary_species.sql
