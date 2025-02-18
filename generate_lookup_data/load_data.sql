@@ -13,5 +13,4 @@ source dp_product.sql
 source dp_active_ingredient.sql
 source dp_therapeutic_class.sql
 source new_lookup_item.sql
-source pine.sql
 source drug_list.sql

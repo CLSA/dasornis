@@ -10,12 +10,13 @@ CREATE TABLE new_lookup_item (
   aig VARCHAR(10) NULL DEFAULT NULL,
   atc_number VARCHAR(20) NULL DEFAULT NULL,
   atc VARCHAR(120) NULL DEFAULT NULL,
+  last_update_date DATE DEFAULT NULL,
   PRIMARY KEY (id),
   INDEX dk_identifier (identifier),
   UNIQUE KEY uq_identifier (identifier)
 ) ENGINE=InnoDB CHARSET=utf8;
 
-INSERT INTO new_lookup_item( identifier, status, name, description, aig, atc_number, atc )
+INSERT INTO new_lookup_item( identifier, status, name, description, aig, atc_number, atc, last_update_date )
 SELECT
   din,
   status,
@@ -35,7 +36,8 @@ SELECT
   ) AS description,
   ai_group_no AS aig,
   GROUP_CONCAT( atc_number ORDER BY atc_number SEPARATOR ";" ) AS atc_number,
-  GROUP_CONCAT( atc ORDER BY atc SEPARATOR ";" ) AS atc
+  GROUP_CONCAT( atc ORDER BY atc SEPARATOR ";" ) AS atc,
+  last_update_date
 FROM dp_product
 LEFT JOIN dp_active_ingredient ON dp_product.id = dp_active_ingredient.dp_id
 LEFT JOIN dp_therapeutic_class ON dp_product.id = dp_therapeutic_class.dp_id
