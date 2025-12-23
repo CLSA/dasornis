@@ -19,8 +19,9 @@ $result = $db->query(
   'ORDER BY npn'
 );
 
-$filename = sprintf( 'lnhpd.%s.csv', date("Ymd") );
-$fp = fopen( $filename, 'w' );
+$csv_filename = sprintf( 'lnhpd.%s.csv', date("Ymd") );
+$zip_filename = sprintf( 'lnhpd.%s.zip', date("Ymd") );
+$fp = fopen( $csv_filename, 'w' );
 
 while( $row = $result->fetch_assoc() )
 {
@@ -28,3 +29,6 @@ while( $row = $result->fetch_assoc() )
 }
 
 fclose( $fp );
+
+exec( sprintf( 'zip %s %s', $zip_filename, $csv_filename ) );
+unlink( $csv_filename );

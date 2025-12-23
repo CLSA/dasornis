@@ -1,11 +1,10 @@
 Generates a list of all existing, new and defunct drugs.
 
-1) Run load_data.php
-  This will download the LNHPD JSON data from the Health Canada Drug Product Database (DPD):
-  https://health-products.canada.ca/api/natural-licences/productlicence?lang=en&type=json
-  It will then put the relevant data into the patrick_sandbox.lnhpd_product table (replacing the existing table).
+Simply run ./generate and the following will happen:
 
-2) Run generate_csv.php
-  This will generate the file "lnhpd.<date>.csv" that can be uploaded to Pine.
-  All existing entries will be overwritten and any missing will be added.
+  The LNHPD JSON data will be downloded from the Health Canada Drug Product Database (DPD):
+    https://health-products.canada.ca/api/natural-licences/productlicence?lang=en&type=json
+  All relevant data will be loaded into the patrick_sandbox.lnhpd_product table (replacing the existing table).
+  All CSV data will be written to the file "lnhpd.<date>.csv" (used to replace all lookup items in Pine)
+  The csv file will be compressed into a zip file.
   Note that no indicators are ever provided by this utility (by design).

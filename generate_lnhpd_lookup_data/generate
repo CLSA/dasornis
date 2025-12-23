@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
 ini_set( 'display_errors', '1' );
 error_reporting( E_ALL );
@@ -13,7 +14,7 @@ ini_set( 'date.timezone', 'US/Eastern' );
 printf( "Connecting to database\n" );
 $db = new \mysqli( DB_SERV, DB_USER, DB_PASS, DB_NAME );
 
-printf( " - rebuilding tables\n" );
+printf( "Rebuilding tables\n" );
 $db->query( 'DROP TABLE IF EXISTS lnhpd_product' );
 
 $db->query( <<<SQL
@@ -27,7 +28,7 @@ $db->query( <<<SQL
   ) ENGINE=InnoDB CHARSET=utf8
 SQL );
 
-printf( "\nProduct Licence Data\n - reading from LNHPD API\n" );
+printf( "Reading from LNHPD API\n" );
 
 $curl = curl_init();
 curl_setopt( $curl, CURLOPT_URL, sprintf( '%s/%s?lang=en&type=json', BASE_URL, PRODUCT_URL ) );
@@ -49,11 +50,11 @@ if( 200 != $code )
   die();
 }
 
-printf( " - parsing JSON data\n" );
+printf( "Parsing JSON data\n" );
 $product_list = json_decode( $response );
-printf( " - %d records found\n", count( $product_list ) );
+printf( "%d records found\n", count( $product_list ) );
 
-printf( " - loading data into database\n" );
+printf( "Loading data into database\n" );
 foreach( $product_list as $product )
 {
   // only import the entries that are marked as the primary name
@@ -69,7 +70,11 @@ foreach( $product_list as $product )
   }
 }
 
-printf( " - sanitizing names\n" );
+$result = $db->query( 'SELECT COUNT(*) FROM lnhpd_product' );
+printf( "Done, %d unique records written\n", $result->fetch_array(MYSQLI_NUM)[0] );
+$result->free();
+
+printf( "Sanitizing names\n" );
 $db->query( <<<'SQL'
   SET @re = "[^ a-zA-z0-9ÀàÁáÂâÃãÄäÇçÈèÉéÊêËëÌìÍíÎîÏïÑñÒòÓóÔôÕõÖöŠšÚùÛúÜûÙüÝýŸÿŽž\µ:<>«»²~!@#$%^&*()_+\\[\\]\\;',./{}|:\"<>?=-]"
 SQL );
@@ -94,5 +99,29 @@ $db->query( <<<'SQL'
     )
 SQL );
 
-printf( "\nDisconnecting from database\n" );
+printf( "Writing CSV data\n" );
+$result = $db->query(
+  'SELECT '.
+    'npn AS identifier, '.
+    'product_name AS name, '.
+    'CONCAT( product_name, " (", company_name, ")" ) AS description '.
+  'FROM lnhpd_product '.
+  'ORDER BY npn'
+);
+
+$csv_filename = sprintf( 'lnhpd.%s.csv', date("Ymd") );
+$zip_filename = sprintf( 'lnhpd.%s.zip', date("Ymd") );
+$fp = fopen( $csv_filename, 'w' );
+
+while( $row = $result->fetch_assoc() )
+{
+  fputcsv( $fp, [$row['identifier'], $row['name'], $row['description'], ''] );
+}
+$result->free();
 $db->close();
+
+fclose( $fp );
+
+printf( "Generating %s file\n", $zip_filename );
+exec( sprintf( 'zip %s %s', $zip_filename, $csv_filename ) );
+unlink( $csv_filename );
