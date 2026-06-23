@@ -57,9 +57,9 @@ UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 SELECT "Testing for NPN matches" AS "";
 
 INSERT INTO data_has_npn( identifier, npn, type, source )
-SELECT DISTINCT identifier, nhp_product.npn, "code", "code"
+SELECT DISTINCT identifier, lnhpd_product.npn, "code", "code"
 FROM data
-JOIN nhp_product ON CONVERT( input_code, INT ) = CONVERT( nhp_product.npn, INT )
+JOIN lnhpd_product ON CONVERT( input_code, INT ) = CONVERT( lnhpd_product.npn, INT )
 WHERE match_found = 0;
 
 SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
@@ -105,24 +105,12 @@ SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
-SELECT "Testing for direct natural proper matches" AS "";
+SELECT "Testing for direct natural ingredient matches" AS "";
 
 INSERT INTO data_has_npn( identifier, npn, type, source )
-SELECT DISTINCT identifier, npn, "direct", "proper"
+SELECT DISTINCT identifier, npn, "direct", "ingredient"
 FROM data
-JOIN natural_proper_name ON input_corrected = natural_proper_name.name
-WHERE match_found = 0;
-
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
-
-UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
-
-SELECT "Testing for direct natural common matches" AS "";
-
-INSERT INTO data_has_npn( identifier, npn, type, source )
-SELECT DISTINCT identifier, npn, "direct", "common"
-FROM data
-JOIN natural_common_name ON input_corrected = natural_common_name.name
+JOIN natural_ingredient_name ON input_corrected = natural_ingredient_name.name
 WHERE match_found = 0;
 
 SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
@@ -243,49 +231,12 @@ SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
-SELECT "Testing for word natural proper matches" AS "";
+SELECT "Testing for word natural ingredient matches" AS "";
 
 INSERT INTO data_has_npn( identifier, npn, type, source )
-SELECT DISTINCT identifier, npn, "word", "proper"
+SELECT DISTINCT identifier, npn, "word", "ingredient"
 FROM data
-JOIN natural_proper_name ON CHAR_LENGTH( name ) > 3
-AND input_corrected RLIKE CONCAT(
-  "( |^)",
-  REPLACE(
-    REPLACE(
-      REPLACE(
-        REPLACE(
-          REPLACE(
-            name,
-            ".",
-            "[.]"
-          ),
-          "+",
-          "[+]"
-        ),
-        "(",
-        "[(]"
-      ),
-      ")",
-      "[)]"
-    ),
-    "|",
-    "[|]"
-  ),
-  "( |$)"
-)
-WHERE match_found = 0;
-
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
-
-UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
-
-SELECT "Testing for word natural common matches" AS "";
-
-INSERT INTO data_has_npn( identifier, npn, type, source )
-SELECT DISTINCT identifier, npn, "word", "common"
-FROM data
-JOIN natural_common_name ON CHAR_LENGTH( name ) > 3
+JOIN natural_ingredient_name ON CHAR_LENGTH( name ) > 3
 AND input_corrected RLIKE CONCAT(
   "( |^)",
   REPLACE(
@@ -435,25 +386,12 @@ SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
-SELECT "Testing for simplified natural proper matches" AS "";
+SELECT "Testing for simplified natural ingredient matches" AS "";
 
 INSERT INTO data_has_npn( identifier, npn, type, source )
-SELECT DISTINCT identifier, npn, "simple", "proper"
+SELECT DISTINCT identifier, npn, "simple", "ingredient"
 FROM data
-JOIN natural_proper_name ON data.input_simple = natural_proper_name.name_simple
-WHERE match_found = 0
-AND data.input_simple != "";
-
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
-
-UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
-
-SELECT "Testing for simplified natural common matches" AS "";
-
-INSERT INTO data_has_npn( identifier, npn, type, source )
-SELECT DISTINCT identifier, npn, "simple", "common"
-FROM data
-JOIN natural_common_name ON data.input_simple = natural_common_name.name_simple
+JOIN natural_ingredient_name ON data.input_simple = natural_ingredient_name.name_simple
 WHERE match_found = 0
 AND data.input_simple != "";
 
@@ -500,24 +438,12 @@ SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
-SELECT "Testing for no-parentheses natural proper matches" AS "";
+SELECT "Testing for no-parentheses natural ingredient matches" AS "";
 
 INSERT INTO data_has_npn( identifier, npn, type, source )
-SELECT DISTINCT identifier, npn, "no-parens", "proper"
+SELECT DISTINCT identifier, npn, "no-parens", "ingredient"
 FROM data
-JOIN natural_proper_name ON data.input_no_parens = natural_proper_name.name_no_parens
-WHERE match_found = 0;
-
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
-
-UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
-
-SELECT "Testing for no-parentheses natural common matches" AS "";
-
-INSERT INTO data_has_npn( identifier, npn, type, source )
-SELECT DISTINCT identifier, npn, "no-parens", "common"
-FROM data
-JOIN natural_common_name ON data.input_no_parens = natural_common_name.name_no_parens
+JOIN natural_ingredient_name ON data.input_no_parens = natural_ingredient_name.name_no_parens
 WHERE match_found = 0;
 
 SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
@@ -563,48 +489,17 @@ SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
-SELECT "Testing for no-units natural proper matches" AS "";
+SELECT "Testing for no-units natural ingredient matches" AS "";
 
 INSERT INTO data_has_npn( identifier, npn, type, source )
-SELECT DISTINCT identifier, npn, "no-units", "proper"
+SELECT DISTINCT identifier, npn, "no-units", "ingredient"
 FROM data
-JOIN natural_proper_name ON data.input_no_units = natural_proper_name.name_no_units
+JOIN natural_ingredient_name ON data.input_no_units = natural_ingredient_name.name_no_units
 WHERE match_found = 0;
 
 SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
-
-SELECT "Testing for no-units natural common matches" AS "";
-
-INSERT INTO data_has_npn( identifier, npn, type, source )
-SELECT DISTINCT identifier, npn, "no-units", "common"
-FROM data
-JOIN natural_common_name ON data.input_no_units = natural_common_name.name_no_units
-WHERE match_found = 0;
-
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
-
-UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
-
--- ------------------------------------------------------------------------------------------------
--- SELECT "Removing data that has more than 5 matches" AS "";
--- 
--- DELETE FROM data_has_din
--- WHERE identifier IN ( SELECT identifier FROM ( SELECT identifier FROM data_has_din GROUP BY identifier HAVING COUNT(*) > 5 ) AS temp );
--- 
--- SELECT CONCAT( ROW_COUNT(), " drug matches removed" ) AS "";
--- 
--- DELETE FROM data_has_npn
--- WHERE identifier IN ( SELECT identifier FROM ( SELECT identifier FROM data_has_npn GROUP BY identifier HAVING COUNT(*) > 5 ) AS temp );
--- 
--- SELECT CONCAT( ROW_COUNT(), " natural matches removed" ) AS "";
--- 
--- UPDATE data
--- LEFT JOIN data_has_din USING (identifier)
--- LEFT JOIN data_has_npn USING (identifier)
--- SET match_found = 0
--- WHERE din IS NULL AND npn IS NULL;
 
 -- ------------------------------------------------------------------------------------------------
 SELECT "Replacing multiple matches with lowest ranking DIN or NPN" AS "";

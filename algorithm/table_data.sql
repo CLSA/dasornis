@@ -1,6 +1,6 @@
 -- Dumps all relevant data used by coders for manual coding
 
-select
+SELECT
   din,
   brand_name,
   class,
@@ -12,25 +12,25 @@ select
   last_update_date,
   ai_group_no,
   company_name,
-  group_concat( distinct pharmaceutical_form order by pharmaceutical_form ) AS forms,
-  group_concat( distinct standard order by standard ) AS standards,
-  group_concat( distinct route order by route ) AS routes,
-  group_concat( distinct schedule order by schedule ) AS schedules,
-  group_concat( distinct status order by status ) AS statuses,
-  group_concat( distinct ahfs_number order by ahfs_number ) AS ahfs_numbers
-from dp_product
-left join dp_company on dp_product.id = dp_company.dp_id
-left join dp_form on dp_product.id = dp_form.dp_id
-left join dp_pharmaceutical_standard on dp_product.id = dp_pharmaceutical_standard.dp_id
-left join dp_route on dp_product.id = dp_route.dp_id
-left join dp_schedule on dp_product.id = dp_schedule.dp_id
-left join dp_status on dp_product.id = dp_status.dp_id
-left join dp_therapeutic_class on dp_product.id = dp_therapeutic_class.dp_id
-where din is not null and brand_name is not null
-group by dp_product.id
-order by din, brand_name;
+  GROUP_CONCAT( distinct pharmaceutical_form ORDER BY pharmaceutical_form ) AS forms,
+  GROUP_CONCAT( distinct standard ORDER BY standard ) AS standards,
+  GROUP_CONCAT( distinct route ORDER BY route ) AS routes,
+  GROUP_CONCAT( distinct schedule ORDER BY schedule ) AS schedules,
+  GROUP_CONCAT( distinct status ORDER BY status ) AS statuses,
+  GROUP_CONCAT( distinct ahfs_number ORDER BY ahfs_number ) AS ahfs_numbers
+FROM dp_product
+LEFT JOIN dp_company ON dp_product.id = dp_company.dp_id
+LEFT JOIN dp_form ON dp_product.id = dp_form.dp_id
+LEFT JOIN dp_pharmaceutical_standard ON dp_product.id = dp_pharmaceutical_standard.dp_id
+LEFT JOIN dp_route ON dp_product.id = dp_route.dp_id
+LEFT JOIN dp_schedule ON dp_product.id = dp_schedule.dp_id
+LEFT JOIN dp_status ON dp_product.id = dp_status.dp_id
+LEFT JOIN dp_therapeutic_class ON dp_product.id = dp_therapeutic_class.dp_id
+WHERE din IS NOT NULL and brand_name IS NOT NULL
+GROUP BY dp_product.id
+ORDER BY din, brand_name;
 
-select
+SELECT
   din,
   ingredient,
   code,
@@ -39,30 +39,22 @@ select
   dosage_value,
   base,
   dosage_unit
-from dp_active_ingredient
-join dp_product on dp_active_ingredient.dp_id = dp_product.id
-where din is not null and brand_name is not null
-order by din, ingredient;
+FROM dp_active_ingredient
+JOIN dp_product ON dp_active_ingredient.dp_id = dp_product.id
+WHERE din IS NOT NULL and brand_name IS NOT NULL
+ORDER BY din, ingredient;
 
-select
+SELECT
   npn,
   product_name,
-  dosage_form,
-  licence_date,
-  status,
-  company_name,
-  group_concat( distinct route_type_desc order by route_type_desc ) AS routes
-from nhp_product
-left join nhp_company on nhp_product.id = nhp_company.nhp_id
-left join nhp_route on nhp_product.id = nhp_route.nhp_id
-where npn is not null and product_name is not null
-group by nhp_product.id
-order by npn, product_name;
+  company_name
+FROM lnhpd_product
+GROUP BY lnhpd_product.lnhpd_id
+ORDER BY npn, product_name;
 
-select
+SELECT
   npn,
-  proper_name,
-  common_name,
+  name,
   potency_amount,
   potency_unit_of_measure,
   potency_constituent,
@@ -74,8 +66,6 @@ select
   ratio_denominator,
   dried_herb_equivalent,
   dhe_unit_of_measure
-from nhp_medicinal_ingredient
-join nhp_product on nhp_medicinal_ingredient.nhp_id = nhp_product.id
-where npn is not null and product_name is not null
-order by npn, proper_name;
-
+FROM lnhpd_ingredient
+JOIN lnhpd_product USING ( lnhpd_id )
+ORDER BY npn, name;

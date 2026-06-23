@@ -7,19 +7,19 @@ require_once( 'settings.php' );
 
 class db {
   function __construct() {
-    $this->mysql = mysqli_init();
-    $this->mysql->options( MYSQLI_OPT_LOCAL_INFILE, true );
-    $this->mysql->real_connect( SERVER, USERNAME, PASSWORD, NAME );
+    $this->db = \mysqli_init();
+    $this->db->options( MYSQLI_OPT_LOCAL_INFILE, true );
+    $this->db->real_connect( SERVER, USERNAME, PASSWORD, NAME );
   }
 
   function __destruct() {
-    $this->mysql->close();
+    $this->db->close();
   }
 
   function query( $sql ) {
-    $result = $this->mysql->query( $sql );
+    $result = $this->db->query( $sql );
     if( false === $result ) {
-      printf( "mysql > %s [%s] for query:\n%s\n", $this->mysql->error, $this->mysql->errno, $sql );
+      printf( "mariadb > %s [%s] for query:\n%s\n", $this->db->error, $this->db->errno, $sql );
 
       die();
     }

@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS data_has_npn;
 DROP TABLE IF EXISTS data;
 CREATE TABLE data (
   identifier CHAR(10) NOT NULL,
-  input VARCHAR(127) COMMENT "Opal variable: MEDI_ID_NAME_SP_1",
+  input VARCHAR(511) COMMENT "Opal variable: MEDI_ID_NAME_SP_1",
   PRIMARY KEY (identifier),
   INDEX dk_input ( input )
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

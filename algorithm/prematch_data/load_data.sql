@@ -7,11 +7,11 @@ SELECT "Creating prematch table" AS "";
 
 DROP TABLE IF EXISTS prematch;
 CREATE TABLE prematch (
-  match1 VARCHAR(127),
-  match2 VARCHAR(127),
-  match3 VARCHAR(127),
-  match4 VARCHAR(127),
-  match5 VARCHAR(127),
+  match1 VARCHAR(511),
+  match2 VARCHAR(511),
+  match3 VARCHAR(511),
+  match4 VARCHAR(511),
+  match5 VARCHAR(511),
   din VARCHAR(8),
   npn VARCHAR(8),
   INDEX dk_match1( match1 ),

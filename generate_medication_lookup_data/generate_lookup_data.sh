@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mysql patrick_sandbox -e '
+mariadb patrick_sandbox -e '
   SELECT id INTO @lookup_id FROM patrick_pine.lookup WHERE name = "medications";
   SELECT
     identifier AS DIN,
@@ -22,7 +22,7 @@ mysql patrick_sandbox -e '
   ORDER BY identifier;
 ' | sed -e 's#\t#","#g' | sed -e 's#.*#"&"#' | sed -e 's#"NULL"#""#g' > existing.csv
 
-mysql patrick_sandbox -e '
+mariadb patrick_sandbox -e '
   SELECT id INTO @lookup_id FROM patrick_pine.lookup WHERE name = "medications";
   SELECT
     new_lookup_item.identifier AS DIN,
@@ -40,7 +40,7 @@ mysql patrick_sandbox -e '
   AND new_lookup_item.status IN ( "approved", "marketed" );
 ' | sed -e 's#\t#","#g' | sed -e 's#.*#"&"#' | sed -e 's#"NULL"#""#g' > new.csv
 
-# mysql patrick_sandbox -e '
+# mariadb patrick_sandbox -e '
 #   SELECT id INTO @lookup_id FROM patrick_pine.lookup WHERE name = "medications";
 #   SELECT
 #     lookup_item.identifier AS DIN,

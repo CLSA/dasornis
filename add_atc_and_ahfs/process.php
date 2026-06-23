@@ -9,15 +9,16 @@ define( 'DB_NAME', 'patrick_dasornis' );
 ini_set( 'date.timezone', 'US/Eastern' );
 $db = new \mysqli( DB_SERV, DB_USER, DB_PASS, DB_NAME );
 
-$response = $db->query(
-  'SELECT din, '.
-         'GROUP_CONCAT( DISTINCT anumber ORDER BY anumber SEPARATOR ";" ) atc, '.
-         'GROUP_CONCAT( DISTINCT ahfs_number ORDER BY ahfs_number SEPARATOR ";" ) ahfs '.
-  'FROM dp_product '.
-  'JOIN dp_therapeutic_class ON dp_product.id = dp_therapeutic_class.dp_id '.
-  'GROUP BY dp_product.id '.
-  'ORDER BY din'
-);
+$response = $db->query( <<<SQL
+  SELECT
+    din,
+    GROUP_CONCAT( DISTINCT anumber ORDER BY anumber SEPARATOR ";" ) atc,
+    GROUP_CONCAT( DISTINCT ahfs_number ORDER BY ahfs_number SEPARATOR ";" ) ahfs
+  FROM dp_product
+  JOIN dp_therapeutic_class ON dp_product.id = dp_therapeutic_class.dp_id
+  GROUP BY dp_product.id
+  ORDER BY din
+SQL );
 
 $lookup = array();
 while( $row = $response->fetch_array() )

@@ -7,8 +7,8 @@ SELECT "Creating lookup table" AS "";
 
 DROP TABLE IF EXISTS lookup;
 CREATE TABLE lookup (
-  input VARCHAR(127),
-  output VARCHAR(127),
+  input VARCHAR(511),
+  output VARCHAR(511),
   INDEX dk_input ( input )
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
