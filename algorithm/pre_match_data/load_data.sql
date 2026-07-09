@@ -1,12 +1,12 @@
--- This file will load all prematch data
+-- This file will load all pre_match data
 
 SET CHARACTER SET 'utf8';
 SET collation_connection = 'utf8_general_ci';
 
-SELECT "Creating prematch table" AS "";
+SELECT "Creating pre_match table" AS "";
 
-DROP TABLE IF EXISTS prematch;
-CREATE TABLE prematch (
+DROP TABLE IF EXISTS pre_match;
+CREATE TABLE pre_match (
   match1 VARCHAR(511),
   match2 VARCHAR(511),
   match3 VARCHAR(511),
@@ -21,8 +21,8 @@ CREATE TABLE prematch (
   INDEX dk_match5( match5 )
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOAD DATA LOCAL INFILE "enc_prematch.csv"
-INTO TABLE prematch CHARACTER SET UTF8
+LOAD DATA LOCAL INFILE "enc_pre_match.csv"
+INTO TABLE pre_match CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES

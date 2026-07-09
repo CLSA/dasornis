@@ -11,8 +11,8 @@ $db->query( <<<SQL
   CREATE TABLE data_has_din (
     identifier char(10) NOT NULL,
     din varchar(8) NOT NULL,
-    type ENUM( "predefined", "direct", "code", "word", "reverse-word", "simple", "no-parens", "no-units", "no-vowel", "soundex" ),
-    source ENUM( "predefined", "code", "product", "ingredient" ) NOT NULL,
+    type ENUM( "manual-match", "pre-match", "direct", "code", "word", "reverse-word", "simple", "no-parens", "no-units", "no-vowel", "soundex" ),
+    source ENUM( "pre-match", "code", "product", "ingredient" ) NOT NULL,
     PRIMARY KEY (identifier, din),
     INDEX fk_identifier (identifier),
     INDEX fk_din (din),
@@ -32,8 +32,8 @@ $db->query( <<<SQL
   CREATE TABLE data_has_npn (
     identifier char(10) NOT NULL,
     npn varchar(8) NOT NULL,
-    type ENUM( "predefined", "direct", "code", "word", "reverse-word", "simple", "no-parens", "no-units", "no-vowel", "soundex" ),
-    source ENUM( "predefined", "code", "product", "ingredient", "common" ) NOT NULL,
+    type ENUM( "manual-match", "pre-match", "direct", "code", "word", "reverse-word", "simple", "no-parens", "no-units", "no-vowel", "soundex" ),
+    source ENUM( "pre-match", "code", "product", "ingredient", "common" ) NOT NULL,
     PRIMARY KEY (identifier, npn),
     INDEX fk_identifier (identifier),
     INDEX fk_npn (npn),
@@ -472,11 +472,12 @@ $result = $db->query( <<<SQL
   SELECT
      identifier,
      IFNULL(
-       REPLACE( LOWER( data.input ), lookup.input, lookup.output ),
+       REPLACE( LOWER( data.input ), word_correction.input, word_correction.output ),
        LOWER( data.input )
      )
   FROM data
-  LEFT JOIN lookup ON LOWER( data.input ) RLIKE CONCAT( "[[:<:]]", LOWER( lookup.input ), "[[:>:]]" )
+  LEFT JOIN word_correction
+    ON LOWER( data.input ) RLIKE CONCAT( "[[:<:]]", LOWER( word_correction.input ), "[[:>:]]" )
   WHERE data.input IS NOT NULL
 SQL );
 while( $row = $result->fetch_row() ) if( $row[0] && $row[1] ) {

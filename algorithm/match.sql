@@ -3,12 +3,40 @@ TRUNCATE data_has_din;
 TRUNCATE data_has_npn;
 
 -- ------------------------------------------------------------------------------------------------
-SELECT "Testing for predefined DIN matches" AS "";
+SELECT "Testing for manual-match DIN matches" AS "";
 
 INSERT INTO data_has_din( identifier, din, type, source )
-SELECT DISTINCT identifier, din, "predefined", "predefined"
+SELECT DISTINCT identifier, din, "manual-match", "manual-match"
 FROM data
-JOIN prematch
+JOIN manual_match USING (input)
+WHERE match_found = 0
+AND din IS NOT NULL;
+
+SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+
+UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
+
+-- ------------------------------------------------------------------------------------------------
+SELECT "Testing for manual-match NPN matches" AS "";
+
+INSERT INTO data_has_npn( identifier, npn, type, source )
+SELECT DISTINCT identifier, npn, "manual-match", "manual-match"
+FROM data
+JOIN manual_match USING (input)
+WHERE match_found = 0
+AND npn IS NOT NULL;
+
+SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+
+UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
+
+-- ------------------------------------------------------------------------------------------------
+SELECT "Testing for pre-match DIN matches" AS "";
+
+INSERT INTO data_has_din( identifier, din, type, source )
+SELECT DISTINCT identifier, din, "pre-match", "pre-match"
+FROM data
+JOIN pre_match
 ON input_corrected LIKE CONCAT( "%", match1, "%" )
 AND IF( match2 IS NULL, 1, input_corrected LIKE CONCAT( "%", match2, "%" ) )
 AND IF( match3 IS NULL, 1, input_corrected LIKE CONCAT( "%", match3, "%" ) )
@@ -22,12 +50,12 @@ SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
 -- ------------------------------------------------------------------------------------------------
-SELECT "Testing for predefined NPN matches" AS "";
+SELECT "Testing for pre-match NPN matches" AS "";
 
 INSERT INTO data_has_npn( identifier, npn, type, source )
-SELECT DISTINCT identifier, npn, "predefined", "predefined"
+SELECT DISTINCT identifier, npn, "pre-match", "pre-match"
 FROM data
-JOIN prematch
+JOIN pre_match
 ON input_corrected LIKE CONCAT( "%", match1, "%" )
 AND IF( match2 IS NULL, 1, input_corrected LIKE CONCAT( "%", match2, "%" ) )
 AND IF( match3 IS NULL, 1, input_corrected LIKE CONCAT( "%", match3, "%" ) )
