@@ -1,9 +1,8 @@
-#!/usr/bin/php
 <?php
 require_once( 'database.php' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-print "Creating auxiliry tables\n";
+print "Creating auxiliary tables\n";
 
 $db->query( 'DROP TABLE IF EXISTS data_has_din' );
 

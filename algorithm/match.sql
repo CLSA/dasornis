@@ -12,7 +12,7 @@ JOIN manual_match USING (input)
 WHERE match_found = 0
 AND din IS NOT NULL;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
@@ -26,7 +26,7 @@ JOIN manual_match USING (input)
 WHERE match_found = 0
 AND npn IS NOT NULL;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
@@ -45,7 +45,7 @@ AND IF( match5 IS NULL, 1, input_corrected LIKE CONCAT( "%", match5, "%" ) )
 WHERE match_found = 0
 AND din IS NOT NULL;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
@@ -64,7 +64,7 @@ AND IF( match5 IS NULL, 1, input_corrected LIKE CONCAT( "%", match5, "%" ) )
 WHERE match_found = 0
 AND npn IS NOT NULL;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
@@ -77,7 +77,7 @@ FROM data
 JOIN dp_product ON CONVERT( input_code, INT ) = CONVERT( dp_product.din, INT )
 WHERE match_found = 0;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
@@ -90,7 +90,7 @@ FROM data
 JOIN lnhpd_product ON CONVERT( input_code, INT ) = CONVERT( lnhpd_product.npn, INT )
 WHERE match_found = 0;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
@@ -104,7 +104,7 @@ JOIN drug_name ON input_corrected = drug_name.name
 WHERE match_found = 0
 AND drug_name.din IS NOT NULL;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
@@ -116,7 +116,7 @@ FROM data
 JOIN drug_ingredient_name ON input_corrected = drug_ingredient_name.name
 WHERE match_found = 0;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
@@ -129,7 +129,7 @@ FROM data
 JOIN natural_name ON input_corrected = natural_name.name
 WHERE match_found = 0;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
@@ -141,7 +141,7 @@ FROM data
 JOIN natural_ingredient_name ON input_corrected = natural_ingredient_name.name
 WHERE match_found = 0;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
@@ -180,7 +180,7 @@ AND input_corrected RLIKE CONCAT(
 WHERE match_found = 0
 AND drug_name.din IS NOT NULL;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
@@ -217,7 +217,7 @@ AND input_corrected RLIKE CONCAT(
 )
 WHERE match_found = 0;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
@@ -255,7 +255,7 @@ AND input_corrected RLIKE CONCAT(
 )
 WHERE match_found = 0;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
@@ -292,7 +292,7 @@ AND input_corrected RLIKE CONCAT(
 )
 WHERE match_found = 0;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
@@ -331,7 +331,7 @@ AND name RLIKE CONCAT(
 WHERE match_found = 0
 AND drug_name.din IS NOT NULL;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
@@ -368,7 +368,7 @@ AND name RLIKE CONCAT(
 )
 WHERE match_found = 0;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
@@ -383,7 +383,7 @@ WHERE match_found = 0
 AND drug_name.din IS NOT NULL
 AND data.input_simple != "";
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
@@ -396,7 +396,7 @@ JOIN drug_ingredient_name ON data.input_simple = drug_ingredient_name.name_simpl
 WHERE match_found = 0
 AND data.input_simple != "";
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
@@ -410,7 +410,7 @@ JOIN natural_name ON data.input_simple = natural_name.name_simple
 WHERE match_found = 0
 AND data.input_simple != "";
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
@@ -423,7 +423,7 @@ JOIN natural_ingredient_name ON data.input_simple = natural_ingredient_name.name
 WHERE match_found = 0
 AND data.input_simple != "";
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
@@ -437,7 +437,7 @@ JOIN drug_name ON data.input_no_parens = drug_name.name_no_parens
 WHERE match_found = 0
 AND drug_name.din IS NOT NULL;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
@@ -449,7 +449,7 @@ FROM data
 JOIN drug_ingredient_name ON data.input_no_parens = drug_ingredient_name.name_no_parens
 WHERE match_found = 0;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
@@ -462,7 +462,7 @@ FROM data
 JOIN natural_name ON data.input_no_parens = natural_name.name_no_parens
 WHERE match_found = 0;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
@@ -474,7 +474,7 @@ FROM data
 JOIN natural_ingredient_name ON data.input_no_parens = natural_ingredient_name.name_no_parens
 WHERE match_found = 0;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
@@ -488,7 +488,7 @@ JOIN drug_name ON data.input_no_units = drug_name.name_no_units
 WHERE match_found = 0
 AND drug_name.din IS NOT NULL;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
@@ -500,7 +500,7 @@ FROM data
 JOIN drug_ingredient_name ON data.input_no_units = drug_ingredient_name.name_no_units
 WHERE match_found = 0;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_din USING( identifier ) SET match_found = 1;
 
@@ -513,7 +513,7 @@ FROM data
 JOIN natural_name ON data.input_no_units = natural_name.name_no_units
 WHERE match_found = 0;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
@@ -525,7 +525,7 @@ FROM data
 JOIN natural_ingredient_name ON data.input_no_units = natural_ingredient_name.name_no_units
 WHERE match_found = 0;
 
-SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
+-- SELECT CONCAT( ROW_COUNT(), " matches found" ) AS "";
 
 UPDATE data JOIN data_has_npn USING( identifier ) SET match_found = 1;
 
