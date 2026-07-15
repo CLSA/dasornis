@@ -13,12 +13,12 @@ CREATE TABLE dp_therapeutic_class (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
-SELECT "Loading enc_ther.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_ther.txt"
+SELECT "Loading ther.txt" AS "";
+LOAD DATA LOCAL INFILE "ther.txt"
 INTO TABLE dp_therapeutic_class CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6 )
 SET dp_id = @col_0,
     anumber = NULLIF( @col_1, "" ),
     atc = NULLIF( @col_2, "" ),
@@ -27,12 +27,12 @@ SET dp_id = @col_0,
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_ther_ap.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_ther_ap.txt"
+SELECT "Loading ther_ap.txt" AS "";
+LOAD DATA LOCAL INFILE "ther_ap.txt"
 INTO TABLE dp_therapeutic_class CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6 )
 SET dp_id = @col_0,
     anumber = NULLIF( @col_1, "" ),
     atc = NULLIF( @col_2, "" ),
@@ -41,12 +41,12 @@ SET dp_id = @col_0,
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_ther_ia.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_ther_ia.txt"
+SELECT "Loading ther_ia.txt" AS "";
+LOAD DATA LOCAL INFILE "ther_ia.txt"
 INTO TABLE dp_therapeutic_class CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6 )
 SET dp_id = @col_0,
     anumber = NULLIF( @col_1, "" ),
     atc = NULLIF( @col_2, "" ),
@@ -55,12 +55,12 @@ SET dp_id = @col_0,
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_ther_dr.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_ther_dr.txt"
+SELECT "Loading ther_dr.txt" AS "";
+LOAD DATA LOCAL INFILE "ther_dr.txt"
 INTO TABLE dp_therapeutic_class CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6 )
 SET dp_id = @col_0,
     anumber = NULLIF( @col_1, "" ),
     atc = NULLIF( @col_2, "" ),

@@ -9,45 +9,45 @@ CREATE TABLE dp_schedule (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
-SELECT "Loading enc_schedule.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_schedule.txt"
+SELECT "Loading schedule.txt" AS "";
+LOAD DATA LOCAL INFILE "schedule.txt"
 INTO TABLE dp_schedule CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2 )
 SET dp_id = @col_0,
     schedule = NULLIF( @col_1, "" );
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_schedule_ap.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_schedule_ap.txt"
+SELECT "Loading schedule_ap.txt" AS "";
+LOAD DATA LOCAL INFILE "schedule_ap.txt"
 INTO TABLE dp_schedule CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2 )
 SET dp_id = @col_0,
     schedule = NULLIF( @col_1, "" );
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_schedule_ia.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_schedule_ia.txt"
+SELECT "Loading schedule_ia.txt" AS "";
+LOAD DATA LOCAL INFILE "schedule_ia.txt"
 INTO TABLE dp_schedule CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2 )
 SET dp_id = @col_0,
     schedule = NULLIF( @col_1, "" );
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_schedule_dr.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_schedule_dr.txt"
+SELECT "Loading schedule_dr.txt" AS "";
+LOAD DATA LOCAL INFILE "schedule_dr.txt"
 INTO TABLE dp_schedule CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2 )
 SET dp_id = @col_0,
     schedule = NULLIF( @col_1, "" );
 

@@ -6,7 +6,7 @@ CREATE TABLE dp_packaging (
   package_size_unit VARCHAR(40),
   package_type VARCHAR(40),
   package_size VARCHAR(5),
-  product_information VARCHAR(80),
+  product_information VARCHAR(4095),
   KEY fk_dp_id (dp_id),
   KEY dk_upc ( upc ),
   KEY dk_package_size_unit ( package_size_unit ),
@@ -16,12 +16,12 @@ CREATE TABLE dp_packaging (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
-SELECT "Loading enc_package.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_package.txt"
+SELECT "Loading package.txt" AS "";
+LOAD DATA LOCAL INFILE "package.txt"
 INTO TABLE dp_packaging CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7 )
 SET dp_id = @col_0,
     upc = NULLIF( @col_1, "" ),
     package_size_unit = NULLIF( @col_2, "" ),
@@ -31,12 +31,12 @@ SET dp_id = @col_0,
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_package_ap.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_package_ap.txt"
+SELECT "Loading package_ap.txt" AS "";
+LOAD DATA LOCAL INFILE "package_ap.txt"
 INTO TABLE dp_packaging CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7 )
 SET dp_id = @col_0,
     upc = NULLIF( @col_1, "" ),
     package_size_unit = NULLIF( @col_2, "" ),
@@ -46,12 +46,12 @@ SET dp_id = @col_0,
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_package_ia.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_package_ia.txt"
+SELECT "Loading package_ia.txt" AS "";
+LOAD DATA LOCAL INFILE "package_ia.txt"
 INTO TABLE dp_packaging CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7 )
 SET dp_id = @col_0,
     upc = NULLIF( @col_1, "" ),
     package_size_unit = NULLIF( @col_2, "" ),
@@ -61,12 +61,12 @@ SET dp_id = @col_0,
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_package_dr.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_package_dr.txt"
+SELECT "Loading package_dr.txt" AS "";
+LOAD DATA LOCAL INFILE "package_dr.txt"
 INTO TABLE dp_packaging CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7 )
 SET dp_id = @col_0,
     upc = NULLIF( @col_1, "" ),
     package_size_unit = NULLIF( @col_2, "" ),

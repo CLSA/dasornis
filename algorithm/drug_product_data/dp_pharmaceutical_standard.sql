@@ -9,44 +9,44 @@ CREATE TABLE dp_pharmaceutical_standard (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
-SELECT "Loading enc_pharm.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_pharm.txt"
+SELECT "Loading pharm.txt" AS "";
+LOAD DATA LOCAL INFILE "pharm.txt"
 INTO TABLE dp_pharmaceutical_standard CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
+LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1 )
 SET dp_id = @col_0,
     standard = NULLIF( @col_1, "" );
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_pharm_ap.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_pharm_ap.txt"
+SELECT "Loading pharm_ap.txt" AS "";
+LOAD DATA LOCAL INFILE "pharm_ap.txt"
 INTO TABLE dp_pharmaceutical_standard CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
+LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1 )
 SET dp_id = @col_0,
     standard = NULLIF( @col_1, "" );
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_pharm_ia.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_pharm_ia.txt"
+SELECT "Loading pharm_ia.txt" AS "";
+LOAD DATA LOCAL INFILE "pharm_ia.txt"
 INTO TABLE dp_pharmaceutical_standard CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
+LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1 )
 SET dp_id = @col_0,
     standard = NULLIF( @col_1, "" );
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_pharm_dr.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_pharm_dr.txt"
+SELECT "Loading pharm_dr.txt" AS "";
+LOAD DATA LOCAL INFILE "pharm_dr.txt"
 INTO TABLE dp_pharmaceutical_standard CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
+LINES TERMINATED BY "\r\n"
 ( @col_0, @col_1 )
 SET dp_id = @col_0,
     standard = NULLIF( @col_1, "" );

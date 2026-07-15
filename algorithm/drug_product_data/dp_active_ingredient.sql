@@ -19,12 +19,12 @@ CREATE TABLE dp_active_ingredient (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
-SELECT "Loading enc_ingred.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_ingred.txt"
+SELECT "Loading ingred.txt" AS "";
+LOAD DATA LOCAL INFILE "ingred.txt"
 INTO TABLE dp_active_ingredient CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a, @col_b, @col_c, @col_d, @col_e )
 SET dp_id = @col_0,
     code = NULLIF( @col_1, "" ),
     ingredient = NULLIF( @col_2, "" ),
@@ -38,12 +38,12 @@ SET dp_id = @col_0,
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_ingred_ap.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_ingred_ap.txt"
+SELECT "Loading ingred_ap.txt" AS "";
+LOAD DATA LOCAL INFILE "ingred_ap.txt"
 INTO TABLE dp_active_ingredient CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a, @col_b, @col_c, @col_d, @col_e )
 SET dp_id = @col_0,
     code = NULLIF( @col_1, "" ),
     ingredient = NULLIF( @col_2, "" ),
@@ -57,12 +57,12 @@ SET dp_id = @col_0,
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_ingred_ia.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_ingred_ia.txt"
+SELECT "Loading ingred_ia.txt" AS "";
+LOAD DATA LOCAL INFILE "ingred_ia.txt"
 INTO TABLE dp_active_ingredient CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a, @col_b, @col_c, @col_d, @col_e )
 SET dp_id = @col_0,
     code = NULLIF( @col_1, "" ),
     ingredient = NULLIF( @col_2, "" ),
@@ -76,12 +76,12 @@ SET dp_id = @col_0,
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_ingred_dr.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_ingred_dr.txt"
+SELECT "Loading ingred_dr.txt" AS "";
+LOAD DATA LOCAL INFILE "ingred_dr.txt"
 INTO TABLE dp_active_ingredient CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a, @col_b, @col_c, @col_d, @col_e )
 SET dp_id = @col_0,
     code = NULLIF( @col_1, "" ),
     ingredient = NULLIF( @col_2, "" ),

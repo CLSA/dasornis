@@ -20,12 +20,12 @@ CREATE TABLE dp_product (
   KEY dk_number_of_ais ( number_of_ais )
 ) ENGINE=InnoDB CHARSET=utf8;
 
-SELECT "Loading enc_drug.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_drug.txt"
+SELECT "Loading drug.txt" AS "";
+LOAD DATA LOCAL INFILE "drug.txt"
 INTO TABLE dp_product CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a, @col_b, @col_c, @col_d )
 SET id = @col_0,
     categorization = NULLIF( @col_1, "" ),
     class = NULLIF( @col_2, "" ),
@@ -40,12 +40,12 @@ SET id = @col_0,
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_drug_ap.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_drug_ap.txt"
+SELECT "Loading drug_ap.txt" AS "";
+LOAD DATA LOCAL INFILE "drug_ap.txt"
 INTO TABLE dp_product CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a, @col_b, @col_c, @col_d )
 SET id = @col_0,
     categorization = NULLIF( @col_1, "" ),
     class = NULLIF( @col_2, "" ),
@@ -60,12 +60,12 @@ SET id = @col_0,
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_drug_ia.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_drug_ia.txt"
+SELECT "Loading drug_ia.txt" AS "";
+LOAD DATA LOCAL INFILE "drug_ia.txt"
 INTO TABLE dp_product CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a, @col_b, @col_c, @col_d )
 SET id = @col_0,
     categorization = NULLIF( @col_1, "" ),
     class = NULLIF( @col_2, "" ),
@@ -80,12 +80,12 @@ SET id = @col_0,
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_drug_dr.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_drug_dr.txt"
+SELECT "Loading drug_dr.txt" AS "";
+LOAD DATA LOCAL INFILE "drug_dr.txt"
 INTO TABLE dp_product CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3, @col_4, @col_5, @col_6, @col_7, @col_8, @col_9, @col_a, @col_b, @col_c, @col_d )
 SET id = @col_0,
     categorization = NULLIF( @col_1, "" ),
     class = NULLIF( @col_2, "" ),

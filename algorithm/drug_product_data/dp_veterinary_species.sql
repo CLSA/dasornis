@@ -9,48 +9,48 @@ CREATE TABLE dp_veterinary_species (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
-SELECT "Loading enc_vet.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_vet.txt"
+SELECT "Loading vet.txt" AS "";
+LOAD DATA LOCAL INFILE "vet.txt"
 INTO TABLE dp_veterinary_species CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3 )
 SET dp_id = @col_0,
     species = NULLIF( @col_1, "" ),
     sub_species = NULLIF( @col_2, "" );
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_vet_ap.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_vet_ap.txt"
+SELECT "Loading vet_ap.txt" AS "";
+LOAD DATA LOCAL INFILE "vet_ap.txt"
 INTO TABLE dp_veterinary_species CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3 )
 SET dp_id = @col_0,
     species = NULLIF( @col_1, "" ),
     sub_species = NULLIF( @col_2, "" );
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_vet_ia.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_vet_ia.txt"
+SELECT "Loading vet_ia.txt" AS "";
+LOAD DATA LOCAL INFILE "vet_ia.txt"
 INTO TABLE dp_veterinary_species CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3 )
 SET dp_id = @col_0,
     species = NULLIF( @col_1, "" ),
     sub_species = NULLIF( @col_2, "" );
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_vet_dr.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_vet_dr.txt"
+SELECT "Loading vet_dr.txt" AS "";
+LOAD DATA LOCAL INFILE "vet_dr.txt"
 INTO TABLE dp_veterinary_species CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3 )
 SET dp_id = @col_0,
     species = NULLIF( @col_1, "" ),
     sub_species = NULLIF( @col_2, "" );

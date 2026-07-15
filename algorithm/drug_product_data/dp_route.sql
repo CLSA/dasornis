@@ -10,48 +10,48 @@ CREATE TABLE dp_route (
   REFERENCES dp_product(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8;
 
-SELECT "Loading enc_route.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_route.txt"
+SELECT "Loading route.txt" AS "";
+LOAD DATA LOCAL INFILE "route.txt"
 INTO TABLE dp_route CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3 )
 SET dp_id = @col_0,
     code = NULLIF( @col_1, "" ),
     route = NULLIF( @col_2, "" );
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_route_ap.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_route_ap.txt"
+SELECT "Loading route_ap.txt" AS "";
+LOAD DATA LOCAL INFILE "route_ap.txt"
 INTO TABLE dp_route CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3 )
 SET dp_id = @col_0,
     code = NULLIF( @col_1, "" ),
     route = NULLIF( @col_2, "" );
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_route_ia.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_route_ia.txt"
+SELECT "Loading route_ia.txt" AS "";
+LOAD DATA LOCAL INFILE "route_ia.txt"
 INTO TABLE dp_route CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3 )
 SET dp_id = @col_0,
     code = NULLIF( @col_1, "" ),
     route = NULLIF( @col_2, "" );
 
 SHOW WARNINGS;
 
-SELECT "Loading enc_route_dr.txt" AS "";
-LOAD DATA LOCAL INFILE "enc_route_dr.txt"
+SELECT "Loading route_dr.txt" AS "";
+LOAD DATA LOCAL INFILE "route_dr.txt"
 INTO TABLE dp_route CHARACTER SET UTF8
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-( @col_0, @col_1, @col_2 )
+LINES TERMINATED BY "\r\n"
+( @col_0, @col_1, @col_2, @col_3 )
 SET dp_id = @col_0,
     code = NULLIF( @col_1, "" ),
     route = NULLIF( @col_2, "" );
