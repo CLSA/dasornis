@@ -19,4 +19,4 @@ FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES
 ( @col_0, @col_1, @col_2 )
-SET input = @col_0, din = @col_1, npn = @col_2;
+SET input = @col_0, din = IF("" = @col_1, NULL, @col_1), npn = IF("" = @col_2, NULL, @col_2);
