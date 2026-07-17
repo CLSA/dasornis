@@ -88,20 +88,33 @@ if( 1 == START_PAGE )
   printf( " - %d records found\n", count( $product_list ) );
 
   printf( " - loading data into database\n" );
+  $success_count = 0;
+  $duplicate_count = 0;
+  $skip_count = 0;
   foreach( $product_list as $product )
   {
-    $db->query( sprintf(
-      'INSERT IGNORE INTO lnhpd_product VALUES (%d, "%s", "%s", "%s")',
-      $product->lnhpd_id,
-      $db->real_escape_string( $product->licence_number ),
-      $db->real_escape_string( $product->product_name ),
-      $db->real_escape_string( $product->company_name )
-    ) );
+    if( $product->licence_number )
+    {
+      $db->query( sprintf(
+        'INSERT IGNORE INTO lnhpd_product VALUES (%d, "%s", "%s", "%s")',
+        $product->lnhpd_id,
+        $db->real_escape_string( $product->licence_number ),
+        $db->real_escape_string( $product->product_name ),
+        $db->real_escape_string( $product->company_name )
+      ) );
+      if( 0 == $db->affected_rows ) $duplicate_count++;
+      else $success_count++;
+    }
+    else
+    {
+      $skip_count++;
+    }
   }
   printf(
-    " - inserted %d new rows (%d duplicates)\n",
-    $db->affected_rows,
-    count( $product_list ) - $db->affected_rows
+    " - %d records added, %d duplicates, %d skipped\n",
+    $success_count,
+    $duplicate_count,
+    $skip_count
   );
 }
 else
