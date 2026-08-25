@@ -13,7 +13,6 @@ DROP TABLE IF EXISTS dp_route;
 DROP TABLE IF EXISTS dp_schedule;
 DROP TABLE IF EXISTS dp_status;
 DROP TABLE IF EXISTS dp_therapeutic_class;
-DROP TABLE IF EXISTS dp_veterinary_species;
 DROP TABLE IF EXISTS dp_product;
 
 SOURCE dp_product.sql
@@ -26,4 +25,5 @@ SOURCE dp_route.sql
 SOURCE dp_schedule.sql
 SOURCE dp_status.sql
 SOURCE dp_therapeutic_class.sql
-SOURCE dp_veterinary_species.sql
+
+DELETE FROM dp_product WHERE class = "Veterinary";
